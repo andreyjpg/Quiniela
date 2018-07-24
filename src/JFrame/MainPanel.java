@@ -4,12 +4,12 @@ package JFrame;
 
 public class MainPanel extends javax.swing.JFrame {
     
-
+    
     public MainPanel() {
         initComponents();
     }
-
-
+    CrearUsuario m=new CrearUsuario();
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -28,6 +28,11 @@ public class MainPanel extends javax.swing.JFrame {
         });
 
         registrarse.setText("Registrarse");
+        registrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarseActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Quiniela");
@@ -66,6 +71,11 @@ public class MainPanel extends javax.swing.JFrame {
     private void inciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inciarSesionActionPerformed
 
     }//GEN-LAST:event_inciarSesionActionPerformed
+
+    private void registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarseActionPerformed
+        CrearUsuario abrir=new CrearUsuario();
+        abrir.setVisible(true);
+    }//GEN-LAST:event_registrarseActionPerformed
 
     /**
      * @param args the command line arguments

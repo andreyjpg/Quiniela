@@ -6,7 +6,7 @@ import java.util.function.Function;
 
 public class Arrays {
     public Partido[] arrayPartidos = new Partido[100];
-    private Usuario[] arrayUsuario = new Usuario[30];
+    public static Usuario[] arrayUsuario = new Usuario[30];
     private Marcadores[] usuarioPartidos = new Marcadores[3000];
     private Equipos[] arrayEquipos = new Equipos[40];
     private Curiosidad[] curiosidades = new Curiosidad[10];
