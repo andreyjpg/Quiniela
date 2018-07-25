@@ -102,8 +102,10 @@ public class Usuario {
          "***DATOS GUARDADOS DEL PERFIL***\n\nNombre: "
          +Arrays.arrayUsuario[x].getNombre()+"\nApellidos: "
          +Arrays.arrayUsuario[x].getApellido()+"\nCorreo: "
-         +Arrays.arrayUsuario[x].getCorreo()+"Contraseña: "
-         +Arrays.arrayUsuario[x].getContraseña()+"\nCarrera");
+         +Arrays.arrayUsuario[x].getCorreo()+"\nContraseña: "
+         +Arrays.arrayUsuario[x].getContraseña()+"\nCarrera: "
+                 +Arrays.arrayUsuario[x].getCarrera()+"\nId.: "
+                 +Arrays.arrayUsuario[x].getIdUsuario());
         x++;
         
     }
@@ -113,16 +115,12 @@ public class Usuario {
         correoIng=IniciarSesion.correo_is.getText();
         contraIng=IniciarSesion.contraseña_is.getText();
         for(y=0;y<Arrays.arrayUsuario.length;y++){
-            if(correoIng==Arrays.arrayUsuario[y].getCorreo()){
-                if(contraIng==Arrays.arrayUsuario[y].getContraseña()){
-                    //MenuParaUsuario();
+            if(correoIng.equals(Arrays.arrayUsuario[x].getCorreo())){
+                if(contraIng.equals(Arrays.arrayUsuario[x].getContraseña())){
+                    //MenúparaUsuarios
+                    JOptionPane.showMessageDialog(null,"Sesión Iniciada");
+                    break;
                 }
-                else{//Si la contraseña no coincide, se muestra el mensaje
-                    JOptionPane.showMessageDialog(null,"Contraseña Incorrecta");
-                }
-            }
-            else {//Si el correo no coincide, se muestra el mensaje:
-                JOptionPane.showMessageDialog(null,"Correo no registrado");
             }
         }//Fin for
         

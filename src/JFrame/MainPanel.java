@@ -7,6 +7,7 @@ public class MainPanel extends javax.swing.JFrame {
     
     public MainPanel() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     CrearUsuario m=new CrearUsuario();
     
@@ -76,6 +77,7 @@ public class MainPanel extends javax.swing.JFrame {
     private void registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarseActionPerformed
         CrearUsuario abrir=new CrearUsuario();
         abrir.setVisible(true);
+        
     }//GEN-LAST:event_registrarseActionPerformed
 
     /**

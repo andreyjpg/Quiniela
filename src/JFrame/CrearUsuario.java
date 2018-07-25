@@ -8,7 +8,9 @@ public class CrearUsuario extends javax.swing.JFrame {
     
     public CrearUsuario() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
+    
         Usuario u=new Usuario();
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -164,8 +166,9 @@ public class CrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_CarreraActionPerformed
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
-
-        u.RegistrarUsuario();
+    u.RegistrarUsuario();
+    
+        
         
         
         

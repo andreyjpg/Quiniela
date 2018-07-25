@@ -1,10 +1,11 @@
 
 package JFrame;
-
+import javax.swing.JOptionPane;
 import quiniela.Usuario;
 public class IniciarSesion extends javax.swing.JFrame {
     public IniciarSesion() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     Usuario verif=new Usuario();
