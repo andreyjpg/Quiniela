@@ -1,9 +1,10 @@
 
 package quiniela;
 import JFrame.CrearUsuario;
+import JFrame.IniciarSesion;
 import javax.swing.JOptionPane;
 public class Usuario {
-    private int x,y,opc;
+    private int x,y=0,opc;
     private int idUsuario;
     private String nombreUsuario;
     private String nombre;
@@ -104,6 +105,26 @@ public class Usuario {
          +Arrays.arrayUsuario[x].getCorreo()+"Contraseña: "
          +Arrays.arrayUsuario[x].getContraseña()+"\nCarrera");
         x++;
+        
+    }
+    public void Login(){
+        String contraIng;
+        String correoIng;
+        correoIng=IniciarSesion.correo_is.getText();
+        contraIng=IniciarSesion.contraseña_is.getText();
+        for(y=0;y<Arrays.arrayUsuario.length;y++){
+            if(correoIng==Arrays.arrayUsuario[y].getCorreo()){
+                if(contraIng==Arrays.arrayUsuario[y].getContraseña()){
+                    //MenuParaUsuario();
+                }
+                else{//Si la contraseña no coincide, se muestra el mensaje
+                    JOptionPane.showMessageDialog(null,"Contraseña Incorrecta");
+                }
+            }
+            else {//Si el correo no coincide, se muestra el mensaje:
+                JOptionPane.showMessageDialog(null,"Correo no registrado");
+            }
+        }//Fin for
         
     }
    

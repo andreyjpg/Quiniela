@@ -69,7 +69,8 @@ public class MainPanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inciarSesionActionPerformed
-
+        IniciarSesion abrir=new IniciarSesion();
+        abrir.setVisible(true);
     }//GEN-LAST:event_inciarSesionActionPerformed
 
     private void registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarseActionPerformed

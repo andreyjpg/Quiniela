@@ -164,9 +164,9 @@ public class CrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_CarreraActionPerformed
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
-        CrearUsuario abrir=new CrearUsuario();
+
         u.RegistrarUsuario();
-        abrir.setVisible(false);
+        
         
         
     }//GEN-LAST:event_BtnGuardarActionPerformed
