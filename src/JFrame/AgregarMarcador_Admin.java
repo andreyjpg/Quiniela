@@ -1,21 +1,37 @@
 
 package JFrame;
 
-import quiniela.Arrays;
-
-
-public class AgregarMarcador_Admin extends javax.swing.JFrame {
-        quiniela.Arrays array[] = new quiniela.Arrays[100];
+    public class AgregarMarcador_Admin extends javax.swing.JFrame {
+        quiniela.Arrays array = new quiniela.Arrays();
+    
+    public AgregarMarcador_Admin( quiniela.Partido[] data ) {
+        //CONSTRUCTOR PARA OBTENER DATOS DE JFRAME ANTERIORES
+        array.setArray(data);
+        dataTable();               
+    }    
     
     public AgregarMarcador_Admin() {
         initComponents();
-        dataTable();               
     }
     
-    private void dataTable(){
-        quiniela.Partido partido = new quiniela.Partido();
+
         
-        System.out.print(array.getClass());
+    private void dataTable(){
+        String showTable[][] = new String[5][100];
+        quiniela.Partido partido = new quiniela.Partido();
+        int count = 0;
+        
+        while ( array.get(count) != null ){
+            partido = array.get(count);
+            showTable[0][count] = partido.getFecha()+ " / "+ partido.getHora();
+            showTable[1][count] = partido.getEquipoLocal();
+            showTable[2][count] = String.valueOf(partido.getMarcadorLocal());
+            showTable[3][count] = String.valueOf(partido.getMarcadorVisitante());
+            showTable[4][count] = partido.getEquipoVisitante();
+            count++;
+        }
+                
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -132,7 +148,7 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "fecha y hora", "Equipo Local", "Marcador L", "Marcador V", "Equipo Visitante"
+                "Fecha / Hora", "Equipo Local", "Marcador L", "Marcador V", "Equipo Visitante"
             }
         ) {
             boolean[] canEdit = new boolean [] {
