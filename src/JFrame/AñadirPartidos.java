@@ -5,11 +5,10 @@ import javax.swing.JOptionPane;
 
 
 public class AñadirPartidos extends javax.swing.JFrame {
-            quiniela.Partido partido = new quiniela.Partido();
             quiniela.Arrays array = new quiniela.Arrays();
 
     private int count =0;
-    
+
     public AñadirPartidos() {
         initComponents();
     }
@@ -240,10 +239,9 @@ public class AñadirPartidos extends javax.swing.JFrame {
     }//GEN-LAST:event_equipoLocalActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        quiniela.Partido partido = new quiniela.Partido();
+        //METODO PARA AÑADIR PARTIDOS
         try {    
-            
-
-            partido.setIdPartido(count + 1);
             partido.setEquipoLocal(String.valueOf(equipoLocal.getText()));
             partido.setEquipoVisitante(String.valueOf(equipoVisitante.getText()));
             partido.setFecha(Integer.parseInt(dia.getText())+"-"+ 
@@ -254,8 +252,6 @@ public class AñadirPartidos extends javax.swing.JFrame {
 
             array.add(partido);
             JOptionPane.showMessageDialog(null, "Partido guardado correctamente");
-            System.out.print(array.get(0));
-            count++;
             }
         catch(NumberFormatException err){
             System.err.println("No se pueden guardar palabras o caracteres en hora"
@@ -279,8 +275,9 @@ public class AñadirPartidos extends javax.swing.JFrame {
     }//GEN-LAST:event_equipoLocalInputMethodTextChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println(" "+array.get(0));
-        AgregarMarcador_Admin next = new AgregarMarcador_Admin();
+        //INSTANCIA PARA INICIAR EL SIGUIENTE JFRAME
+        AgregarMarcador_Admin next = new AgregarMarcador_Admin(); 
+        AgregarMarcador_Admin sendArray = new AgregarMarcador_Admin(array.getArray()); //METODO DONDE ENVIA EL ARRAY AL CONSTRUCTOR
         next.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
