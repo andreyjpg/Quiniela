@@ -141,11 +141,11 @@ public class Usuario {
              if(correoIng.equals(Arrays.arrayUsuario[x].getCorreo())){
                 if(contraIng.equals(Arrays.arrayUsuario[x].getContraseña())){
                     if(Arrays.arrayUsuario[y].esAdmin==true){
-                        AñadirPartidos a=new AñadirPartidos();
+                        JFrame.Menu_Admin a=new JFrame.Menu_Admin();
                         a.setVisible(true);
                         break;
                     }else{
-                       MenuUsuarios m=new MenuUsuarios();
+                       JFrame.MenuUsuarios m=new JFrame.MenuUsuarios();
                        m.setVisible(true);
                        break;
                     }

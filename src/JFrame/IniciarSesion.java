@@ -107,7 +107,9 @@ public class IniciarSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_VerificarActionPerformed
 
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
-   
+        MainPanel a = new MainPanel();
+        a.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_AtrasActionPerformed
     
     public static void main(String args[]) {

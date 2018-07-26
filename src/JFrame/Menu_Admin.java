@@ -1,19 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package JFrame;
 
-/**
- *
- * @author Andrey
- */
 public class Menu_Admin extends javax.swing.JFrame {
+    quiniela.Arrays array = new quiniela.Arrays();
 
-    /**
-     * Creates new form Menu_Admin
-     */
+    public Menu_Admin( quiniela.Partido[] data ) {
+      initComponents();
+      array.setArray(data);
+      
+    }
+
     public Menu_Admin() {
         initComponents();
     }
@@ -42,6 +38,11 @@ public class Menu_Admin extends javax.swing.JFrame {
         });
 
         jButton2.setText("Añadir Marcadores");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Ver Ranking");
 
@@ -80,8 +81,16 @@ public class Menu_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        AñadirPartidos a = new AñadirPartidos(array.getArray());
+        a.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        AgregarMarcador_Admin a = new AgregarMarcador_Admin(array.getArray());
+        a.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -12,16 +12,15 @@ public class Arrays {
     private Curiosidad[] curiosidades = new Curiosidad[10];
     private Campeon[] campeonesUsuario = new Campeon[30];
     private Goleador[] goleadoresUsuario = new Goleador[30];
+    
 
-    public Arrays() {
-        Usuario admin=new Usuario();
-        arrayUsuario[0]=admin;
+   /* public Arrays() {
+        
         arrayUsuario[0].setNombre("Administrador");
         arrayUsuario[0].setCorreo("AndreyAdmin@gmail.com");
         arrayUsuario[0].setContraseña("Administrador");
         arrayUsuario[0].setEsAdmin(true);
-        
-    }
+    }*/
     
        
 
