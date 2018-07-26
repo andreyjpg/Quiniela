@@ -1,10 +1,13 @@
 
 package quiniela;
+import JFrame.AñadirPartidos;
+import quiniela.Arrays;
 import JFrame.CrearUsuario;
 import JFrame.IniciarSesion;
+import JFrame.MenuUsuarios;
 import javax.swing.JOptionPane;
 public class Usuario {
-    private int x,y=0,opc;
+    public int x=0,y=0,opc;
     private int idUsuario;
     private String nombreUsuario;
     private String nombre;
@@ -13,8 +16,12 @@ public class Usuario {
     private String carrera;
     private String correo;
     private int puntos;
+    private boolean esAdmin;
+    
+   
     
     public Usuario() {
+        
         idUsuario = 0;
         nombreUsuario = "";
         nombre = "";
@@ -23,7 +30,18 @@ public class Usuario {
         carrera = "";
         correo = "";
         puntos = 0;
+        
     }
+
+    public boolean isEsAdmin() {
+        return esAdmin;
+    }
+
+    public void setEsAdmin(boolean esAdmin) {
+        this.esAdmin = esAdmin;
+    }
+
+    
 
     public int getIdUsuario() {
         return idUsuario;
@@ -90,6 +108,7 @@ public class Usuario {
     }
     
     public void RegistrarUsuario(){
+        if(x<Arrays.arrayUsuario.length){
         Usuario user=new Usuario();
         user.nombre=CrearUsuario.Nombre.getText();
         user.apellido=CrearUsuario.Apellidos.getText();
@@ -102,31 +121,62 @@ public class Usuario {
          "***DATOS GUARDADOS DEL PERFIL***\n\nNombre: "
          +Arrays.arrayUsuario[x].getNombre()+"\nApellidos: "
          +Arrays.arrayUsuario[x].getApellido()+"\nCorreo: "
-         +Arrays.arrayUsuario[x].getCorreo()+"Contraseña: "
-         +Arrays.arrayUsuario[x].getContraseña()+"\nCarrera");
+         +Arrays.arrayUsuario[x].getCorreo()+"\nContraseña: "
+         +Arrays.arrayUsuario[x].getContraseña()+"\nCarrera: "
+                 +Arrays.arrayUsuario[x].getCarrera()+"\nId.: "
+                 +Arrays.arrayUsuario[x].getIdUsuario());
         x++;
-        
+        }else{
+            JOptionPane.showMessageDialog(null,
+                    "Límite de usuarios permitidos alcanzado");
+        }
     }
     public void Login(){
         String contraIng;
         String correoIng;
         correoIng=IniciarSesion.correo_is.getText();
         contraIng=IniciarSesion.contraseña_is.getText();
-        for(y=0;y<Arrays.arrayUsuario.length;y++){
-            if(correoIng==Arrays.arrayUsuario[y].getCorreo()){
-                if(contraIng==Arrays.arrayUsuario[y].getContraseña()){
-                    //MenuParaUsuario();
+        for(y=0;y<x;y++){
+
+             if(correoIng.equals(Arrays.arrayUsuario[x].getCorreo())){
+                if(contraIng.equals(Arrays.arrayUsuario[x].getContraseña())){
+                    if(Arrays.arrayUsuario[y].esAdmin==true){
+                        AñadirPartidos a=new AñadirPartidos();
+                        a.setVisible(true);
+                        break;
+                    }else{
+                       MenuUsuarios m=new MenuUsuarios();
+                       m.setVisible(true);
+                       break;
+                    }
                 }
-                else{//Si la contraseña no coincide, se muestra el mensaje
-                    JOptionPane.showMessageDialog(null,"Contraseña Incorrecta");
-                }
-            }
-            else {//Si el correo no coincide, se muestra el mensaje:
-                JOptionPane.showMessageDialog(null,"Correo no registrado");
             }
         }//Fin for
         
     }
-   
+    public void ordenarRanking(){
+    Usuario aux=new Usuario();
+    int i=0;
+        for(i=0;i<Arrays.arrayUsuario.length;i++){
+            if(Arrays.arrayUsuario[y].getPuntos()<Arrays.arrayUsuario[y+1].getPuntos()){
+                aux=Arrays.arrayUsuario[y+1];
+                Arrays.arrayUsuario[y+1]=Arrays.arrayUsuario[y];
+                Arrays.arrayUsuario[x]=aux;
+            }
+        }
+    }
     
-}
+    public void mostrarRanking(){
+        String s="";
+        int posicion=1;
+        int i=0;
+        for(i=0;i<Arrays.arrayUsuario.length;i++){
+            s=s+posicion+" "+Arrays.arrayUsuario[i].getNombre()+" "
+              +Arrays.arrayUsuario[y].getApellido()+" "+Arrays.arrayUsuario[y].getPuntos();
+            posicion++;
+        }
+        JOptionPane.showMessageDialog(null,
+                "   ***TABLA DE POSICIONES***   \n\n"+s);
+    }
+   }
+

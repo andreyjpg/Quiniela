@@ -1,10 +1,11 @@
 
 package JFrame;
-
+import javax.swing.JOptionPane;
 import quiniela.Usuario;
 public class IniciarSesion extends javax.swing.JFrame {
     public IniciarSesion() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     Usuario verif=new Usuario();
@@ -99,7 +100,10 @@ public class IniciarSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerificarActionPerformed
+
         verif.Login();
+        
+        
     }//GEN-LAST:event_VerificarActionPerformed
 
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
