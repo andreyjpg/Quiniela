@@ -1,11 +1,13 @@
 
 package quiniela;
+import JFrame.AñadirPartidos;
 import quiniela.Arrays;
 import JFrame.CrearUsuario;
 import JFrame.IniciarSesion;
+import JFrame.MenuUsuarios;
 import javax.swing.JOptionPane;
 public class Usuario {
-    private int x=0,y=0,opc;
+    public int x=0,y=0,opc;
     private int idUsuario;
     private String nombreUsuario;
     private String nombre;
@@ -19,7 +21,7 @@ public class Usuario {
    
     
     public Usuario() {
-        Usuario admin=new Usuario();
+        
         idUsuario = 0;
         nombreUsuario = "";
         nombre = "";
@@ -28,12 +30,7 @@ public class Usuario {
         carrera = "";
         correo = "";
         puntos = 0;
-        admin.nombre="Andrey";
-        admin.apellido="Administrador";
-        admin.correo="AndreyAdmin";
-        admin.contraseña="Administrador";
-        admin.esAdmin=true;
-        Arrays.arrayUsuario[30]=admin;
+        
     }
 
     public boolean isEsAdmin() {
@@ -140,14 +137,18 @@ public class Usuario {
         correoIng=IniciarSesion.correo_is.getText();
         contraIng=IniciarSesion.contraseña_is.getText();
         for(y=0;y<x;y++){
-            if(Arrays.arrayUsuario[y].esAdmin==true){
-                
-            }
-            else if(correoIng.equals(Arrays.arrayUsuario[x].getCorreo())){
+
+             if(correoIng.equals(Arrays.arrayUsuario[x].getCorreo())){
                 if(contraIng.equals(Arrays.arrayUsuario[x].getContraseña())){
-                    //MenúparaUsuarios
-                    JOptionPane.showMessageDialog(null,"Sesión Iniciada");
-                    break;
+                    if(Arrays.arrayUsuario[y].esAdmin==true){
+                        AñadirPartidos a=new AñadirPartidos();
+                        a.setVisible(true);
+                        break;
+                    }else{
+                       MenuUsuarios m=new MenuUsuarios();
+                       m.setVisible(true);
+                       break;
+                    }
                 }
             }
         }//Fin for

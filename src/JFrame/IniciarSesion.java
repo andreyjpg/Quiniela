@@ -100,9 +100,9 @@ public class IniciarSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerificarActionPerformed
-        MenuUsuarios m=new MenuUsuarios();
+
         verif.Login();
-        m.setVisible(true);
+        
         
     }//GEN-LAST:event_VerificarActionPerformed
 
