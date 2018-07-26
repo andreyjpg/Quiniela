@@ -12,6 +12,7 @@ public class Arrays {
     private Curiosidad[] curiosidades = new Curiosidad[10];
     private Campeon[] campeonesUsuario = new Campeon[30];
     private Goleador[] goleadoresUsuario = new Goleador[30];
+    
        
 
     
@@ -153,6 +154,8 @@ public class Arrays {
             }
         }
     }
+    
+    
 }
 
 

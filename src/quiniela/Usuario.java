@@ -1,10 +1,11 @@
 
 package quiniela;
+import quiniela.Arrays;
 import JFrame.CrearUsuario;
 import JFrame.IniciarSesion;
 import javax.swing.JOptionPane;
 public class Usuario {
-    private int x,y=0,opc;
+    private int x=0,y=0,opc;
     private int idUsuario;
     private String nombreUsuario;
     private String nombre;
@@ -13,8 +14,12 @@ public class Usuario {
     private String carrera;
     private String correo;
     private int puntos;
+    private boolean esAdmin;
+    
+   
     
     public Usuario() {
+        Usuario admin=new Usuario();
         idUsuario = 0;
         nombreUsuario = "";
         nombre = "";
@@ -23,7 +28,23 @@ public class Usuario {
         carrera = "";
         correo = "";
         puntos = 0;
+        admin.nombre="Andrey";
+        admin.apellido="Administrador";
+        admin.correo="AndreyAdmin";
+        admin.contraseña="Administrador";
+        admin.esAdmin=true;
+        Arrays.arrayUsuario[30]=admin;
     }
+
+    public boolean isEsAdmin() {
+        return esAdmin;
+    }
+
+    public void setEsAdmin(boolean esAdmin) {
+        this.esAdmin = esAdmin;
+    }
+
+    
 
     public int getIdUsuario() {
         return idUsuario;
@@ -90,6 +111,7 @@ public class Usuario {
     }
     
     public void RegistrarUsuario(){
+        if(x<Arrays.arrayUsuario.length){
         Usuario user=new Usuario();
         user.nombre=CrearUsuario.Nombre.getText();
         user.apellido=CrearUsuario.Apellidos.getText();
@@ -107,15 +129,21 @@ public class Usuario {
                  +Arrays.arrayUsuario[x].getCarrera()+"\nId.: "
                  +Arrays.arrayUsuario[x].getIdUsuario());
         x++;
-        
+        }else{
+            JOptionPane.showMessageDialog(null,
+                    "Límite de usuarios permitidos alcanzado");
+        }
     }
     public void Login(){
         String contraIng;
         String correoIng;
         correoIng=IniciarSesion.correo_is.getText();
         contraIng=IniciarSesion.contraseña_is.getText();
-        for(y=0;y<Arrays.arrayUsuario.length;y++){
-            if(correoIng.equals(Arrays.arrayUsuario[x].getCorreo())){
+        for(y=0;y<x;y++){
+            if(Arrays.arrayUsuario[y].esAdmin==true){
+                
+            }
+            else if(correoIng.equals(Arrays.arrayUsuario[x].getCorreo())){
                 if(contraIng.equals(Arrays.arrayUsuario[x].getContraseña())){
                     //MenúparaUsuarios
                     JOptionPane.showMessageDialog(null,"Sesión Iniciada");
@@ -125,6 +153,29 @@ public class Usuario {
         }//Fin for
         
     }
-   
+    public void ordenarRanking(){
+    Usuario aux=new Usuario();
+    int i=0;
+        for(i=0;i<Arrays.arrayUsuario.length;i++){
+            if(Arrays.arrayUsuario[y].getPuntos()<Arrays.arrayUsuario[y+1].getPuntos()){
+                aux=Arrays.arrayUsuario[y+1];
+                Arrays.arrayUsuario[y+1]=Arrays.arrayUsuario[y];
+                Arrays.arrayUsuario[x]=aux;
+            }
+        }
+    }
     
-}
+    public void mostrarRanking(){
+        String s="";
+        int posicion=1;
+        int i=0;
+        for(i=0;i<Arrays.arrayUsuario.length;i++){
+            s=s+posicion+" "+Arrays.arrayUsuario[i].getNombre()+" "
+              +Arrays.arrayUsuario[y].getApellido()+" "+Arrays.arrayUsuario[y].getPuntos();
+            posicion++;
+        }
+        JOptionPane.showMessageDialog(null,
+                "   ***TABLA DE POSICIONES***   \n\n"+s);
+    }
+   }
+
