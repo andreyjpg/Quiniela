@@ -4,14 +4,23 @@ package JFrame;
 public class Menu_Admin extends javax.swing.JFrame {
     quiniela.Arrays array = new quiniela.Arrays();
 
-    public Menu_Admin( quiniela.Partido[] data ) {
+    public Menu_Admin( quiniela.Campeon[] camp,quiniela.Curiosidad[] curi,
+            quiniela.Equipos[] equi, quiniela.Goleador[] gole,quiniela.Marcadores[]marc,
+            quiniela.Partido[] part, quiniela.Usuario[] usua) {
       initComponents();
-      array.setArray(data);
+      array.setArray(camp);
+      array.setArray(curi);
+      array.setArray(equi);
+      array.setArray(gole);
+      array.setArray(marc);
+      array.setArray(part);
+      array.setArray(usua); 
+
       
     }
 
     public Menu_Admin() {
-        initComponents();
+
     }
 
     /**
@@ -81,13 +90,17 @@ public class Menu_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AñadirPartidos a = new AñadirPartidos(array.getArray());
-        a.setVisible(true);
+        AñadirPartidos a = new AñadirPartidos(array.getArrayCampeon(), array.getArrayCuriosidad(),
+      array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+      array.getArray(), array.getArrayUsuario());
+        a.setVisible(true);// poner visible Frame
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AgregarMarcador_Admin a = new AgregarMarcador_Admin(array.getArray());
+        AgregarMarcador_Admin a = new AgregarMarcador_Admin(array.getArrayCampeon(), array.getArrayCuriosidad(),
+      array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+      array.getArray(), array.getArrayUsuario());
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed

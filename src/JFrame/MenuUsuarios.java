@@ -11,13 +11,27 @@ import quiniela.Arrays;
  * @author nechoo
  */
 public class MenuUsuarios extends javax.swing.JFrame {
+    quiniela.Arrays array = new quiniela.Arrays();
+
 
     /**
      * Creates new form MenuUsuarios
      */
-    public MenuUsuarios() {
-        initComponents();
+    public MenuUsuarios(quiniela.Campeon[] camp,quiniela.Curiosidad[] curi,
+            quiniela.Equipos[] equi, quiniela.Goleador[] gole,quiniela.Marcadores[]marc,
+            quiniela.Partido[] part, quiniela.Usuario[] usua ) {
+      initComponents();
+      array.setArray(camp);
+      array.setArray(curi);
+      array.setArray(equi);
+      array.setArray(gole);
+      array.setArray(marc);
+      array.setArray(part);
+       array.setArray(usua);
         this.setLocationRelativeTo(null);
+    }
+    public MenuUsuarios (){
+        
     }
     
 
@@ -134,8 +148,8 @@ public class MenuUsuarios extends javax.swing.JFrame {
 
     private void rankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankingActionPerformed
         Usuario u=new Usuario();
-        u.ordenarRanking();
-        u.mostrarRanking();
+        //u.ordenarRanking();
+        //u.mostrarRanking();
     }//GEN-LAST:event_rankingActionPerformed
 
     /**

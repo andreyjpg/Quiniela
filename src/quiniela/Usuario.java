@@ -107,54 +107,9 @@ public class Usuario {
         this.puntos = puntos;
     }
     
-    public void RegistrarUsuario(){
-        if(x<Arrays.arrayUsuario.length){
-        Usuario user=new Usuario();
-        user.nombre=CrearUsuario.Nombre.getText();
-        user.apellido=CrearUsuario.Apellidos.getText();
-        user.correo=CrearUsuario.Correo.getText();
-        user.contraseña=CrearUsuario.Password.getText();
-        user.carrera=CrearUsuario.Carrera.getText();
-        user.idUsuario=(int)(Math.random()*9999999);
-        Arrays.arrayUsuario[x]=user;
-        JOptionPane.showMessageDialog(null,
-         "***DATOS GUARDADOS DEL PERFIL***\n\nNombre: "
-         +Arrays.arrayUsuario[x].getNombre()+"\nApellidos: "
-         +Arrays.arrayUsuario[x].getApellido()+"\nCorreo: "
-         +Arrays.arrayUsuario[x].getCorreo()+"\nContraseña: "
-         +Arrays.arrayUsuario[x].getContraseña()+"\nCarrera: "
-                 +Arrays.arrayUsuario[x].getCarrera()+"\nId.: "
-                 +Arrays.arrayUsuario[x].getIdUsuario());
-        x++;
-        }else{
-            JOptionPane.showMessageDialog(null,
-                    "Límite de usuarios permitidos alcanzado");
-        }
-    }
-    public void Login(){
-        String contraIng;
-        String correoIng;
-        correoIng=IniciarSesion.correo_is.getText();
-        contraIng=IniciarSesion.contraseña_is.getText();
-        for(y=0;y<x;y++){
-
-             if(correoIng.equals(Arrays.arrayUsuario[x].getCorreo())){
-                if(contraIng.equals(Arrays.arrayUsuario[x].getContraseña())){
-                    if(Arrays.arrayUsuario[y].esAdmin==true){
-                        JFrame.Menu_Admin a=new JFrame.Menu_Admin();
-                        a.setVisible(true);
-                        break;
-                    }else{
-                       JFrame.MenuUsuarios m=new JFrame.MenuUsuarios();
-                       m.setVisible(true);
-                       break;
-                    }
-                }
-            }
-        }//Fin for
-        
-    }
-    public void ordenarRanking(){
+   
+    
+   /* public void ordenarRanking(){
     Usuario aux=new Usuario();
     int i=0;
         for(i=0;i<Arrays.arrayUsuario.length;i++){
@@ -177,6 +132,6 @@ public class Usuario {
         }
         JOptionPane.showMessageDialog(null,
                 "   ***TABLA DE POSICIONES***   \n\n"+s);
-    }
+    }*/
    }
 

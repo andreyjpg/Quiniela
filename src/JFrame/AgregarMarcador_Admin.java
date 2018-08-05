@@ -7,10 +7,18 @@ import javax.swing.table.DefaultTableModel;
         quiniela.Arrays array = new quiniela.Arrays();
         DefaultTableModel model;
     
-    public AgregarMarcador_Admin( quiniela.Partido[] data ) {
+    public AgregarMarcador_Admin( quiniela.Campeon[] camp,quiniela.Curiosidad[] curi,
+            quiniela.Equipos[] equi, quiniela.Goleador[] gole,quiniela.Marcadores[]marc,
+            quiniela.Partido[] part, quiniela.Usuario[] usua ) {
+      initComponents();
+      array.setArray(camp);
+      array.setArray(curi);
+      array.setArray(equi);
+      array.setArray(gole);
+      array.setArray(marc);
+      array.setArray(part);
+      array.setArray(usua);
         //CONSTRUCTOR PARA OBTENER DATOS DE JFRAME ANTERIORES
-        initComponents(); // Inicio de variables
-        array.setArray(data);//asignar datos de los array
         setModel();//modelo de la tabla
         dataTable(); //agregar datos a la tabla
     }    
@@ -159,7 +167,9 @@ import javax.swing.table.DefaultTableModel;
     }//GEN-LAST:event_guardarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Menu_Admin a = new Menu_Admin(array.getArray());
+        Menu_Admin a = new Menu_Admin(array.getArrayCampeon(), array.getArrayCuriosidad(),
+      array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+      array.getArray(), array.getArrayUsuario());
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

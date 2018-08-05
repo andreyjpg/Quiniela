@@ -3,11 +3,24 @@ package JFrame;
 import javax.swing.JOptionPane;
 import quiniela.Usuario;
 public class IniciarSesion extends javax.swing.JFrame {
-    public IniciarSesion() {
-        initComponents();
+    quiniela.Arrays array = new quiniela.Arrays ();
+    public IniciarSesion(quiniela.Campeon[] camp,quiniela.Curiosidad[] curi,
+            quiniela.Equipos[] equi, quiniela.Goleador[] gole,quiniela.Marcadores[]marc,
+            quiniela.Partido[] part ,quiniela.Usuario[] usua  ) {
+      initComponents();
+      array.setArray(camp);
+      array.setArray(curi);
+      array.setArray(equi);
+      array.setArray(gole);
+      array.setArray(marc);
+      array.setArray(part);
+      array.setArray(usua);
         this.setLocationRelativeTo(null);
     }
-    
+    public IniciarSesion(){
+              initComponents();
+
+    }
     Usuario verif=new Usuario();
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -101,13 +114,33 @@ public class IniciarSesion extends javax.swing.JFrame {
 
     private void VerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerificarActionPerformed
 
-        verif.Login();
+        Login();
         
         
     }//GEN-LAST:event_VerificarActionPerformed
-
+ public void Login(){
+        String contraIng;
+        String correoIng;
+        correoIng=IniciarSesion.correo_is.getText();
+        contraIng=IniciarSesion.contraseña_is.getText();
+        for(int count = 0; count < array.getArrayUsuario().length; count ++){
+            if(correoIng.equals(array.getUsuario(count).getCorreo())){
+                if(contraIng.equals(array.getUsuario(count).getContraseña())){
+                       MenuUsuarios m=new MenuUsuarios(array.getArrayCampeon(), array.getArrayCuriosidad(),
+                        array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+                        array.getArray(), array.getArrayUsuario());
+                       m.setVisible(true);
+                       this.setVisible(false);
+                       break;
+                }
+            }
+        }//Fin for
+        
+    }
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
-        MainPanel a = new MainPanel();
+        MainPanel a = new MainPanel(array.getArrayCampeon(), array.getArrayCuriosidad(),
+      array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+      array.getArray(), array.getArrayUsuario());
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AtrasActionPerformed

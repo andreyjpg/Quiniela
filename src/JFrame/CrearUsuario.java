@@ -1,13 +1,24 @@
 
 package JFrame;
 
+import javax.swing.JOptionPane;
 import quiniela.Usuario;
 
 public class CrearUsuario extends javax.swing.JFrame {
     
+    quiniela.Arrays array = new quiniela.Arrays();
     
-    public CrearUsuario() {
-        initComponents();
+    public CrearUsuario( quiniela.Campeon[] camp,quiniela.Curiosidad[] curi,
+            quiniela.Equipos[] equi, quiniela.Goleador[] gole,quiniela.Marcadores[]marc,
+            quiniela.Partido[] part ,quiniela.Usuario[] usua ) {
+      initComponents();
+      array.setArray(camp);
+      array.setArray(curi);
+      array.setArray(equi);
+      array.setArray(gole);
+      array.setArray(marc);
+      array.setArray(part);
+      array.setArray(usua);
         this.setLocationRelativeTo(null);
     }
     
@@ -164,18 +175,34 @@ public class CrearUsuario extends javax.swing.JFrame {
     private void CarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarreraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CarreraActionPerformed
-
+public void RegistrarUsuario(){
+        int x =0;
+        Usuario user=new Usuario();
+        user.setNombre(Nombre.getText());
+        user.setApellido(Apellidos.getText());
+        user.setCorreo(Correo.getText());
+        user.setContraseña(Password.getText());
+        user.setCarrera(Carrera.getText());
+        user.setIdUsuario((int)(Math.random()*9999999));
+        array.add(user);
+        JOptionPane.showMessageDialog(null,
+         "***DATOS GUARDADOS DEL PERFIL***\n\nNombre: "
+         +array.getUsuario(x).getNombre()+"\nApellidos: "
+         +array.getUsuario(x).getApellido()+"\nCorreo: "
+         +array.getUsuario(x).getCorreo()+"\nContraseña: "
+         +array.getUsuario(x).getContraseña()+"\nCarrera: "
+                 +array.getUsuario(x).getCarrera()+"\nId.: "
+                 +array.getUsuario(x).getIdUsuario());
+        x++;
+        
+    }
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
-    MainPanel m=new MainPanel();
-    u.RegistrarUsuario();
-    this.setVisible(false);
-    m.setVisible(true);
-    
-    
-        
-        
-        
-        
+        MainPanel m=new MainPanel(array.getArrayCampeon(), array.getArrayCuriosidad(),
+          array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+          array.getArray(), array.getArrayUsuario());
+        RegistrarUsuario();
+        this.setVisible(false);
+        m.setVisible(true); 
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
    

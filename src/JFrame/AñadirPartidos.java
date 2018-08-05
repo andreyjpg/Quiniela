@@ -9,10 +9,19 @@ public class AñadirPartidos extends javax.swing.JFrame {
 
     private int count =0;
 
-    public AñadirPartidos( quiniela.Partido[] data ) {
+    public AñadirPartidos( quiniela.Campeon[] camp,quiniela.Curiosidad[] curi,
+            quiniela.Equipos[] equi, quiniela.Goleador[] gole,quiniela.Marcadores[]marc,
+            quiniela.Partido[] part, quiniela.Usuario[] usua ) {
       initComponents();
-      array.setArray(data);
+      array.setArray(camp);
+      array.setArray(curi);
+      array.setArray(equi);
+      array.setArray(gole);
+      array.setArray(marc);
+      array.setArray(part);
+      array.setArray(usua);
     }
+    
 
     public AñadirPartidos() {
 
@@ -272,7 +281,9 @@ public class AñadirPartidos extends javax.swing.JFrame {
     }//GEN-LAST:event_equipoLocalInputMethodTextChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Menu_Admin a = new Menu_Admin(array.getArray());
+        Menu_Admin a = new Menu_Admin(array.getArrayCampeon(), array.getArrayCuriosidad(),
+      array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+      array.getArray(), array.getArrayUsuario());
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -4,12 +4,25 @@ package JFrame;
 
 public class MainPanel extends javax.swing.JFrame {
     
-    
-    public MainPanel() {
-        initComponents();
+    quiniela.Arrays array = new quiniela.Arrays ();
+    public MainPanel(quiniela.Campeon[] camp,quiniela.Curiosidad[] curi,
+            quiniela.Equipos[] equi, quiniela.Goleador[] gole,quiniela.Marcadores[]marc,
+            quiniela.Partido[] part, quiniela.Usuario[] usua ) {
+      initComponents();
+      array.setArray(camp);
+      array.setArray(curi);
+      array.setArray(equi);
+      array.setArray(gole);
+      array.setArray(marc);
+      array.setArray(part);
+      array.setArray(usua);
         this.setLocationRelativeTo(null);
+        
     }
-    CrearUsuario m=new CrearUsuario();
+    public MainPanel (){
+        initComponents();
+
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -96,21 +109,27 @@ public class MainPanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inciarSesionActionPerformed
-        IniciarSesion abrir=new IniciarSesion();
-        MainPanel m=new MainPanel();
+        IniciarSesion abrir=new IniciarSesion(array.getArrayCampeon(), array.getArrayCuriosidad(),
+      array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+      array.getArray(), array.getArrayUsuario());
+        
         abrir.setVisible(true);
         this.setVisible(false);
         
     }//GEN-LAST:event_inciarSesionActionPerformed
 
     private void registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarseActionPerformed
-        CrearUsuario abrir=new CrearUsuario();
+        CrearUsuario abrir=new CrearUsuario(array.getArrayCampeon(), array.getArrayCuriosidad(),
+      array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+      array.getArray(), array.getArrayUsuario());
         abrir.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_registrarseActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Menu_Admin w = new Menu_Admin();
+       Menu_Admin w = new Menu_Admin(array.getArrayCampeon(), array.getArrayCuriosidad(),
+      array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+      array.getArray(), array.getArrayUsuario());
        w.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

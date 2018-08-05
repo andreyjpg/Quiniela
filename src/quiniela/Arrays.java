@@ -6,7 +6,7 @@ import quiniela.Usuario;
 
 public class Arrays {
     public Partido[] arrayPartidos = new Partido[100];
-    public static Usuario[] arrayUsuario = new Usuario[30];
+    public  Usuario[] arrayUsuario = new Usuario[30];
     private Marcadores[] usuarioPartidos = new Marcadores[3000];
     private Equipos[] arrayEquipos = new Equipos[40];
     private Curiosidad[] curiosidades = new Curiosidad[10];
@@ -48,6 +48,18 @@ public class Arrays {
         this.arrayPartidos = arrayPartidos;
     }
             
+    
+      public Usuario getUsuario( int index){
+        return this.arrayUsuario[index];
+    }
+    
+    public Usuario[] getArrayUsuario(){
+        return arrayUsuario;
+    }
+
+    public void setArray(Usuario[] data) {
+        this.arrayUsuario = data;
+    }
     public void add( Usuario data ){
         for (int count = 0; count < this.arrayUsuario.length; count++){
             if ( this.arrayUsuario[count] == null ){
