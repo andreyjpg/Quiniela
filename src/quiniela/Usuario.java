@@ -1,11 +1,6 @@
 
 package quiniela;
-import JFrame.AñadirPartidos;
-import quiniela.Arrays;
-import JFrame.CrearUsuario;
-import JFrame.IniciarSesion;
-import JFrame.MenuUsuarios;
-import javax.swing.JOptionPane;
+
 public class Usuario {
     public int x=0,y=0,opc;
     private int idUsuario;

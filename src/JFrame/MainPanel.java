@@ -21,7 +21,14 @@ public class MainPanel extends javax.swing.JFrame {
     }
     public MainPanel (){
         initComponents();
-
+        quiniela.Usuario usuario = new quiniela.Usuario();
+        
+        usuario.setNombre("Administrador");
+        usuario.setCorreo("Admin.com");
+        usuario.setContraseña("Administrador");
+        usuario.setEsAdmin(true);
+        
+        array.add(usuario);
     }
     
     @SuppressWarnings("unchecked")
@@ -32,7 +39,6 @@ public class MainPanel extends javax.swing.JFrame {
         inciarSesion = new javax.swing.JButton();
         registrarse = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -64,13 +70,6 @@ public class MainPanel extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Quiniela");
 
-        jButton1.setText("Menu Admin");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,10 +85,6 @@ public class MainPanel extends javax.swing.JFrame {
                             .addComponent(inciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                             .addComponent(registrarse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(0, 130, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,9 +95,7 @@ public class MainPanel extends javax.swing.JFrame {
                 .addComponent(inciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
@@ -115,7 +108,6 @@ public class MainPanel extends javax.swing.JFrame {
         
         abrir.setVisible(true);
         this.setVisible(false);
-        
     }//GEN-LAST:event_inciarSesionActionPerformed
 
     private void registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarseActionPerformed
@@ -125,14 +117,6 @@ public class MainPanel extends javax.swing.JFrame {
         abrir.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_registrarseActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Menu_Admin w = new Menu_Admin(array.getArrayCampeon(), array.getArrayCuriosidad(),
-      array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
-      array.getArray(), array.getArrayUsuario());
-       w.setVisible(true);
-       this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,7 +155,6 @@ public class MainPanel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton inciarSesion;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton registrarse;

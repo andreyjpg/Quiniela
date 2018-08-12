@@ -39,6 +39,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         Carrera = new javax.swing.JTextField();
         BtnGuardar = new javax.swing.JButton();
         Password = new javax.swing.JTextField();
+        regresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +93,13 @@ public class CrearUsuario extends javax.swing.JFrame {
             }
         });
 
+        regresar.setText("Regresar");
+        regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,9 +109,6 @@ public class CrearUsuario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(133, 133, 133)
                         .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(BtnGuardar))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -124,7 +129,12 @@ public class CrearUsuario extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
-                                .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BtnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(regresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -152,9 +162,11 @@ public class CrearUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(Carrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
+                .addGap(31, 31, 31)
                 .addComponent(BtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -176,7 +188,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CarreraActionPerformed
 public void RegistrarUsuario(){
-        int x =0;
+        int x =1;
         Usuario user=new Usuario();
         user.setNombre(Nombre.getText());
         user.setApellido(Apellidos.getText());
@@ -187,12 +199,12 @@ public void RegistrarUsuario(){
         array.add(user);
         JOptionPane.showMessageDialog(null,
          "***DATOS GUARDADOS DEL PERFIL***\n\nNombre: "
-         +array.getUsuario(x).getNombre()+"\nApellidos: "
-         +array.getUsuario(x).getApellido()+"\nCorreo: "
-         +array.getUsuario(x).getCorreo()+"\nContraseña: "
-         +array.getUsuario(x).getContraseña()+"\nCarrera: "
-                 +array.getUsuario(x).getCarrera()+"\nId.: "
-                 +array.getUsuario(x).getIdUsuario());
+         +user.getNombre()+"\nApellidos: "
+         +user.getApellido()+"\nCorreo: "
+         +user.getCorreo()+"\nContraseña: "
+         +user.getContraseña()+"\nCarrera: "
+                 +user.getCarrera()+"\nId.: "
+                 +user.getIdUsuario());
         x++;
         
     }
@@ -204,6 +216,14 @@ public void RegistrarUsuario(){
         this.setVisible(false);
         m.setVisible(true); 
     }//GEN-LAST:event_BtnGuardarActionPerformed
+
+    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
+        MainPanel sesion = new MainPanel(array.getArrayCampeon(), array.getArrayCuriosidad(),
+            array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+            array.getArray(), array.getArrayUsuario());
+        sesion.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_regresarActionPerformed
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -219,5 +239,6 @@ public void RegistrarUsuario(){
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton regresar;
     // End of variables declaration//GEN-END:variables
 }

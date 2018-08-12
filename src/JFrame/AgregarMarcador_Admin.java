@@ -35,8 +35,11 @@ import javax.swing.table.DefaultTableModel;
         model = new DefaultTableModel(datos, cabecera);
         tablaPartidos.setModel(model);
         
+        tablaPartidos.setEditingColumn(0);
+        tablaPartidos.setEditingColumn(1);
         tablaPartidos.setEditingColumn(2);
         tablaPartidos.setEditingColumn(3);
+        tablaPartidos.setEditingColumn(4);
         
     }
             
@@ -59,9 +62,6 @@ import javax.swing.table.DefaultTableModel;
         
     }
     
-    private void tableModel(){
-       
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -147,23 +147,44 @@ import javax.swing.table.DefaultTableModel;
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        int count = 0;
+        int count;
+        boolean dateIndex = false;
+        String date = "", hour = "";
         
         try {
+            for( count= 0; count < tablaPartidos.getRowCount(); count++){
             
-            Object L = tablaPartidos.getModel().getValueAt(count, 2);
-            Object V = tablaPartidos.getModel().getValueAt(count, 3);
-            array.get(count).setMarcadorLocal(Integer.parseInt(String.valueOf(L)));
-            array.get(count).setMarcadorVisitante(Integer.parseInt(String.valueOf(V)));
+                String fecha = String.valueOf(tablaPartidos.getModel().getValueAt(count, 0));
+                for ( int i = 0; i < fecha.length(); i++){
 
-            //array.get(count).setMarcadorLocal();
-            count++;
+                    if( fecha.charAt(i) == '/'){
+                        dateIndex= true;
+                   }else if ( dateIndex && fecha.charAt(i) != ' '){
+                       hour += fecha.charAt(i);
+                   } else if (fecha.charAt(i) != ' ') {
+                       date += fecha.charAt(i);
+                   }
+                }
+                System.out.println(String.valueOf(tablaPartidos.getModel().getValueAt(count, 1)));
+                String teamL = String.valueOf(tablaPartidos.getModel().getValueAt(count, 1));
+                int L = Integer.parseInt(String.valueOf(tablaPartidos.getModel().getValueAt(count, 2)));
+                int V = Integer.parseInt(String.valueOf(tablaPartidos.getModel().getValueAt(count, 3)));
+                String TeamV = String.valueOf(tablaPartidos.getModel().getValueAt(count, 4));
+
+                array.get(count).setFecha(date);
+                array.get(count).setHora(hour);
+                array.get(count).setEquipoLocal(teamL);
+                array.get(count).setMarcadorLocal(L);
+                array.get(count).setMarcadorVisitante(V);
+                array.get(count).setEquipoVisitante(TeamV);
+            }
+           
         } 
         catch (ArrayIndexOutOfBoundsException err){
             
         }
         JOptionPane.showMessageDialog(null, "Datos Guardados");
-        System.out.println(array.get(0).getMarcadorLocal());
+        System.out.println(array.get(0).getEquipoLocal());
     }//GEN-LAST:event_guardarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

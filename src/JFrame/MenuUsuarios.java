@@ -12,6 +12,7 @@ import quiniela.Arrays;
  */
 public class MenuUsuarios extends javax.swing.JFrame {
     quiniela.Arrays array = new quiniela.Arrays();
+    int usuarioActivo = 0;
 
 
     /**
@@ -19,7 +20,7 @@ public class MenuUsuarios extends javax.swing.JFrame {
      */
     public MenuUsuarios(quiniela.Campeon[] camp,quiniela.Curiosidad[] curi,
             quiniela.Equipos[] equi, quiniela.Goleador[] gole,quiniela.Marcadores[]marc,
-            quiniela.Partido[] part, quiniela.Usuario[] usua ) {
+            quiniela.Partido[] part, quiniela.Usuario[] usua, int activo ) {
       initComponents();
       array.setArray(camp);
       array.setArray(curi);
@@ -27,7 +28,8 @@ public class MenuUsuarios extends javax.swing.JFrame {
       array.setArray(gole);
       array.setArray(marc);
       array.setArray(part);
-       array.setArray(usua);
+      array.setArray(usua);
+      usuarioActivo = activo; 
         this.setLocationRelativeTo(null);
     }
     public MenuUsuarios (){
@@ -50,6 +52,7 @@ public class MenuUsuarios extends javax.swing.JFrame {
         goleador = new javax.swing.JButton();
         agregarMarcador = new javax.swing.JButton();
         salir = new javax.swing.JButton();
+        sesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,12 +81,24 @@ public class MenuUsuarios extends javax.swing.JFrame {
         });
 
         agregarMarcador.setText("Agregar Marcador");
+        agregarMarcador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarMarcadorActionPerformed(evt);
+            }
+        });
 
         salir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         salir.setText("Salir");
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
+            }
+        });
+
+        sesion.setText("Cerrar sesión");
+        sesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sesionActionPerformed(evt);
             }
         });
 
@@ -103,12 +118,14 @@ public class MenuUsuarios extends javax.swing.JFrame {
                 .addGap(39, 39, 39))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(121, 121, 121))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sesion)
+                .addGap(31, 31, 31))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,7 +133,9 @@ public class MenuUsuarios extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(sesion)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -126,9 +145,9 @@ public class MenuUsuarios extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(goleador, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ranking, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(27, 27, 27)
                 .addComponent(salir)
-                .addGap(21, 21, 21))
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -151,6 +170,21 @@ public class MenuUsuarios extends javax.swing.JFrame {
         //u.ordenarRanking();
         //u.mostrarRanking();
     }//GEN-LAST:event_rankingActionPerformed
+
+    private void sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sesionActionPerformed
+       MainPanel sesion = new MainPanel(array.getArrayCampeon(), array.getArrayCuriosidad(),
+            array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+            array.getArray(), array.getArrayUsuario());
+        sesion.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_sesionActionPerformed
+
+    private void agregarMarcadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarMarcadorActionPerformed
+    MarcadorUsuario sesion = new MarcadorUsuario(array.getArrayCampeon(), array.getArrayCuriosidad(),
+            array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+            array.getArray(), array.getArrayUsuario(), usuarioActivo);
+        sesion.setVisible(true);
+        this.setVisible(false);    }//GEN-LAST:event_agregarMarcadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,5 +228,6 @@ public class MenuUsuarios extends javax.swing.JFrame {
     private javax.swing.JButton ranking;
     private javax.swing.JButton resultados;
     private javax.swing.JButton salir;
+    private javax.swing.JButton sesion;
     // End of variables declaration//GEN-END:variables
 }
