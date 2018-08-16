@@ -1,11 +1,15 @@
 
 package JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
     public class AgregarMarcador_Admin extends javax.swing.JFrame {
         quiniela.Arrays array = new quiniela.Arrays();
         DefaultTableModel model;
+        int row = countRows();
+        Object data[][]= new Object[row][6];
+  
     
     public AgregarMarcador_Admin( quiniela.Campeon[] camp,quiniela.Curiosidad[] curi,
             quiniela.Equipos[] equi, quiniela.Goleador[] gole,quiniela.Marcadores[]marc,
@@ -19,46 +23,76 @@ import javax.swing.table.DefaultTableModel;
       array.setArray(part);
       array.setArray(usua);
         //CONSTRUCTOR PARA OBTENER DATOS DE JFRAME ANTERIORES
+        addRows(); //agregar datos a la tabla
         setModel();//modelo de la tabla
-        dataTable(); //agregar datos a la tabla
-    }    
+        
+    }   
+
     
     public AgregarMarcador_Admin() {
         
     }
-    
+  
+    private int countRows(){
+        int countData = 0;
+        for(int count=0; count<array.getArray().length; count++){   
+            if (array.get(count) != null){
+                countData++;
+            } else {
+                break;
+            }
+        }
+        return countData;
+    }
     private void setModel(){
         
-        String cabecera[] = {"Fecha / Hora", "Equipo Local", "Marcador L", 
-            "Marcador V", "Equipo Visitante"};
-        String datos[][] = {};
-        model = new DefaultTableModel(datos, cabecera);
-        tablaPartidos.setModel(model);
-        
-        tablaPartidos.setEditingColumn(0);
-        tablaPartidos.setEditingColumn(1);
-        tablaPartidos.setEditingColumn(2);
-        tablaPartidos.setEditingColumn(3);
-        tablaPartidos.setEditingColumn(4);
+        tablaPartidos.setModel(new javax.swing.table.DefaultTableModel(
+            data,
+            new String [] {
+                "Iniciado", "Fecha / hora", "Equipo Local", "Marcador Local", "Marcador Visitante", "Equipo Visitante"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true, true, false
+            };
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+
+        });
         
     }
             
-    private void dataTable(){
-        String showTable[] = new String[5];
-        quiniela.Partido partido = new quiniela.Partido();
-
-        int count = 0;
-        
-        while ( array.get(count) != null ){
-            partido = array.get(count);
-            showTable[0] = partido.getFecha()+ " / "+ partido.getHora();
-            showTable[1] = partido.getEquipoLocal();
-            showTable[2] = String.valueOf(partido.getMarcadorLocal());
-            showTable[3] = String.valueOf(partido.getMarcadorVisitante());
-            showTable[4] = partido.getEquipoVisitante();
-            count++;
-            model.addRow(showTable);
+    private void addRows(){
+        int column = 0;
+        try{
+            for(int count=0; count<array.getArray().length; count++){              
+                data[column][0] = array.get(count).isIniciado();
+                data[column][1] = array.get(count).getFecha()+
+                                        "/"+ array.get(count).getHora();
+                data[column][2] = array.get(count).getEquipoLocal();
+                data[column][3] = String.valueOf(array.get(count).getMarcadorLocal());
+                data[column][4] = String.valueOf(array.get(count).getMarcadorVisitante());
+                data[column][5] = array.get(count).getEquipoVisitante();
+                column++;
+            }
+        }catch (NullPointerException err){
+            
+        } catch( ArrayIndexOutOfBoundsException err2){
+            
         }
+        
+                    
+                
+        
+        
         
     }
     
@@ -75,19 +109,28 @@ import javax.swing.table.DefaultTableModel;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Partidos registrados");
 
+        tablaPartidos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tablaPartidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Iniciado", "Fecha / hora", "Equipo Local", "Marcador Local", "Marcador Visitante", "Equipo Visitante"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, true, false
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -122,17 +165,17 @@ import javax.swing.table.DefaultTableModel;
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jButton1)
-                        .addGap(104, 104, 104)
+                        .addGap(134, 134, 134)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(218, 218, 218)
                         .addComponent(guardar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jButton1))

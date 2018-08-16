@@ -10,6 +10,7 @@ public class Partido{
     private int marcadorVisitante;
     private String fecha; 
     private String hora;
+    private boolean iniciado;
     
     public Partido(){
         idPartido = 0;
@@ -19,6 +20,15 @@ public class Partido{
         marcadorVisitante = 0;
         fecha = "";
         hora = "";
+        iniciado= false;
+    }
+
+    public boolean isIniciado() {
+        return iniciado;
+    }
+
+    public void setIniciado(boolean iniciado) {
+        this.iniciado = iniciado;
     }
 
     public int getIdPartido() {

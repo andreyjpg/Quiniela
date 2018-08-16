@@ -255,7 +255,7 @@ public class AñadirPartidos extends javax.swing.JFrame {
                     Integer.parseInt(año.getText()));
             partido.setHora(Integer.parseInt(hora.getText())+":"+
                     Integer.parseInt(minutos.getText()));
-
+            partido.setIniciado(false);
             array.add(partido);
             JOptionPane.showMessageDialog(null, "Partido guardado correctamente");
             }
