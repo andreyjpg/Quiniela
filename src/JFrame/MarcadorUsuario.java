@@ -35,44 +35,24 @@ public class MarcadorUsuario extends javax.swing.JFrame {
         int column = 0;
         boolean existe = false;
         try{
-        for(int countGame=0; countGame<array.getArray().length; countGame++){
-            if( array.getMarcadores(0) != null ){
-                for(int countUser=0; countUser<array.getArrayMarcadores().length; countUser++){
-                        if( array.get(countGame).getIdPartido() == array.getMarcadores(countUser).getIdPartido()){
-                            
-                            dataTable[column][0] = array.getMarcadores(countUser).getFecha()+
-                                    "/"+ array.getMarcadores(countUser).getHora();
-                            dataTable[column][1] = array.getMarcadores(countUser).getEquipoLocal();
-                            dataTable[column][2] = String.valueOf(array.getMarcadores(countUser).getMarcadorLocal());
-                            dataTable[column][3] = String.valueOf(array.getMarcadores(countUser).getMarcadorVisitante());
-                            dataTable[column][4] = array.getMarcadores(countUser).getEquipoVisitante();
-                            existe = true;
-                            column++;
-                            countUser = array.getArrayMarcadores().length;
-                        }
-                    }
-                }
-            
-            if (existe){
-                existe = false;
-            }else{
-                if ( array.get(countGame) != null){
-                    dataTable[column][0] = array.get(countGame).getFecha()+
-                                "/"+ array.get(countGame).getHora();
-                    dataTable[column][1] = array.get(countGame).getEquipoLocal();
-                    dataTable[column][2] = "0";
-                    dataTable[column][3] = "0";
-                    dataTable[column][4] = array.get(countGame).getEquipoVisitante();
-                    column++;
-                } else {
-                    break;
+            for(int count=0; count<array.getArrayMarcadores().length; count++){
+                if(array.getMarcadores(count).getUsuario() == array.getUsuario(usuarioActivo).getIdUsuario()){
+                  dataTable[column][0] = array.getMarcadores(count).getFecha()+
+                                "/"+ array.getMarcadores(count).getHora();
+                    dataTable[column][1] = array.getMarcadores(count).getEquipoLocal();
+                    dataTable[column][2] = String.valueOf(array.getMarcadores(count).getMarcadorLocal());
+                    dataTable[column][3] = String.valueOf(array.getMarcadores(count).getMarcadorVisitante());
+                    dataTable[column][4] = array.getMarcadores(count).getEquipoVisitante();
+                    column++;  
                 }
             }
-        }
         }catch (NullPointerException err){
             
         }
+
     }
+
+    
     
     public void addDataTable(){
         tabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -186,49 +166,31 @@ public class MarcadorUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        int row;
+        int row =0;
         boolean dateIndex = false;
         String date = "", hour = "";
         String fecha = "";
-        try {
-            for( row= 0; row < 100; row++){
-                if(dataTable[row][0] != null){
-                    fecha = dataTable[row][0];
-                    for ( int i = 0; i < fecha.length(); i++){
-                        if( fecha.charAt(i) == '/'){
-                            dateIndex= true;
-                       }else if ( dateIndex && fecha.charAt(i) != ' '){
-                           hour += fecha.charAt(i);
-                       } else if (fecha.charAt(i) != ' ') {
-                           date += fecha.charAt(i);
-                       }
-                    }
+        try { 
+            for(int user = 0; user < array.getArrayMarcadores().length; user++){
+                if(dataTable[row][0] != null){                    
                     int L = Integer.parseInt(String.valueOf(tabla.getModel().getValueAt(row, 2)));
                     int V = Integer.parseInt(String.valueOf(tabla.getModel().getValueAt(row, 3)));
-                    
-                    if(array.getMarcadores(row)== null ){
-                        quiniela.Marcadores data = new quiniela.Marcadores();
-                        data.setUsuario(array.getUsuario(usuarioActivo).getIdUsuario());
-                        data.setIdPartido(array.get(row).getIdPartido());
-                        data.setFecha(date);
-                        data.setHora(hour);
-                        data.setEquipoLocal(dataTable[row][1]);
-                        data.setMarcadorLocal(L);
-                        data.setMarcadorVisitante(V);
-                        data.setEquipoVisitante(dataTable[row][4]);
-                        
-                        array.add(data);
-                    } else{
-                        array.getMarcadores(row).setMarcadorLocal(L);
-                        array.getMarcadores(row).setMarcadorLocal(V);
+                    if(array.getMarcadores(user)!=null){
+                        if(array.getMarcadores(user).getUsuario()== array.getUsuario(usuarioActivo).getIdUsuario()){
+                            array.getMarcadores(user).setMarcadorLocal(L);
+                            array.getMarcadores(user).setMarcadorVisitante(V);
+                            row++;
+                        }
                     }
-                    
+
                 } else{
-                    break;
+                   break;
                 }
             }     
             } catch (ArrayIndexOutOfBoundsException err){
 
+            } catch (NullPointerException err2){
+                
             }
             JOptionPane.showMessageDialog(null, "Datos Guardados");
             System.out.println(array.getMarcadores(0).getMarcadorLocal());

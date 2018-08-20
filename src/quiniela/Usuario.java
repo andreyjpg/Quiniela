@@ -99,7 +99,7 @@ public class Usuario {
     }
 
     public void setPuntos(int puntos) {
-        this.puntos = puntos;
+        this.puntos += puntos;
     }
     
    

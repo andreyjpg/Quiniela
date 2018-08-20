@@ -24,9 +24,31 @@ public class AñadirPartidos extends javax.swing.JFrame {
     
 
     public AñadirPartidos() {
-
+        
     }
 
+    public void agregarPartidos(quiniela.Partido datos){
+        try{
+            for( int count = 1; count< array.getArrayUsuario().length; count++){
+                if(array.getUsuario(count) !=null){
+                    quiniela.Marcadores marcador = new quiniela.Marcadores();
+                    marcador.setUsuario(array.getUsuario(count).getIdUsuario());
+                    marcador.setIdPartido(datos.getIdPartido());
+                    marcador.setEquipoLocal(datos.getEquipoLocal());
+                    marcador.setFecha(datos.getFecha());
+                    marcador.setHora(datos.getHora());
+                    marcador.setMarcadorLocal(0);
+                    marcador.setMarcadorVisitante(0);
+                    marcador.setEquipoVisitante(datos.getEquipoVisitante());
+
+                    array.add(marcador);
+                }
+            }
+        } catch(NullPointerException err){
+            
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,19 +63,11 @@ public class AñadirPartidos extends javax.swing.JFrame {
         equipoVisitante = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         guardar = new javax.swing.JButton();
-        hora = new javax.swing.JTextField();
-        minutos = new javax.swing.JTextField();
-        dia = new javax.swing.JTextField();
-        mes = new javax.swing.JTextField();
-        año = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        fecha = new javax.swing.JFormattedTextField();
+        hora = new javax.swing.JFormattedTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,10 +90,10 @@ public class AñadirPartidos extends javax.swing.JFrame {
         jLabel1.setText("Añadir partidos");
 
         equipoLocal.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 equipoLocalInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         equipoLocal.addActionListener(new java.awt.event.ActionListener() {
@@ -94,45 +108,14 @@ public class AñadirPartidos extends javax.swing.JFrame {
 
         jLabel4.setText("Equipo Visitante");
 
-        jLabel5.setText("Fecha:");
+        jLabel5.setText("Fecha (D-M-YY ):");
 
-        jLabel6.setText("Día:");
-
-        jLabel7.setText("Mes:");
-
-        jLabel8.setText("Año:");
-
-        jLabel9.setText("Hora del partido (formato de 24 horas):");
-
-        jLabel10.setText("Hora:");
-
-        jLabel11.setText("Minutos:");
+        jLabel9.setText("Hora del partido (h:mm AM/PM):");
 
         guardar.setText("Guardar");
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
-            }
-        });
-
-        hora.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        hora.setText("0");
-
-        minutos.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        minutos.setText("0");
-
-        dia.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        dia.setText("0");
-        dia.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        mes.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        mes.setText("0");
-
-        año.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        año.setText("0");
-        año.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                añoActionPerformed(evt);
             }
         });
 
@@ -143,60 +126,46 @@ public class AñadirPartidos extends javax.swing.JFrame {
             }
         });
 
+        fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d-m-yy"))));
+
+        hora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("hh:mm a"))));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(año, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(guardar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel11)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(160, 160, 160)
+                        .addComponent(guardar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(equipoLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel2)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(equipoVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4)))
+                                    .addComponent(jLabel4))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(equipoLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(equipoVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel5)
                             .addComponent(jLabel9)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jButton1)
                         .addGap(44, 44, 44)
-                        .addComponent(jLabel1)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,22 +186,12 @@ public class AñadirPartidos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(minutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
                 .addComponent(guardar)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
@@ -250,12 +209,10 @@ public class AñadirPartidos extends javax.swing.JFrame {
         try {    
             partido.setEquipoLocal(String.valueOf(equipoLocal.getText()));
             partido.setEquipoVisitante(String.valueOf(equipoVisitante.getText()));
-            partido.setFecha(Integer.parseInt(dia.getText())+"-"+ 
-                    Integer.parseInt(mes.getText())+"-"+
-                    Integer.parseInt(año.getText()));
-            partido.setHora(Integer.parseInt(hora.getText())+":"+
-                    Integer.parseInt(minutos.getText()));
+            partido.setFecha(fecha.getText());
+            partido.setHora(hora.getText());
             partido.setIniciado(false);
+            partido.setFinalizado(false);
             array.add(partido);
             JOptionPane.showMessageDialog(null, "Partido guardado correctamente");
             }
@@ -265,17 +222,11 @@ public class AñadirPartidos extends javax.swing.JFrame {
         }
         equipoLocal.setText("");
         equipoVisitante.setText("");
-        dia.setText("0");
-        mes.setText("0");
-        año.setText("0");
-        minutos.setText("0");
-        hora.setText("0");
+        fecha.setText("");
+        hora.setText("");
+        agregarPartidos(partido);
     }//GEN-LAST:event_guardarActionPerformed
-
-    private void añoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añoActionPerformed
-      // TODO add your handling code here:
-    }//GEN-LAST:event_añoActionPerformed
-
+    
     private void equipoLocalInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_equipoLocalInputMethodTextChanged
       
     }//GEN-LAST:event_equipoLocalInputMethodTextChanged
@@ -322,28 +273,20 @@ public class AñadirPartidos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField año;
-    private javax.swing.JTextField dia;
     private javax.swing.JTextField equipoLocal;
     private javax.swing.JTextField equipoVisitante;
+    private javax.swing.JFormattedTextField fecha;
     private javax.swing.JButton guardar;
-    private javax.swing.JTextField hora;
+    private javax.swing.JFormattedTextField hora;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField mes;
-    private javax.swing.JTextField minutos;
     // End of variables declaration//GEN-END:variables
 }

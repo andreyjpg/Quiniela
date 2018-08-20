@@ -123,29 +123,33 @@ public class IniciarSesion extends javax.swing.JFrame {
         String correoIng;
         correoIng=IniciarSesion.correo_is.getText();
         contraIng=IniciarSesion.contraseña_is.getText();
-        for(int count = 0; count < array.getArrayUsuario().length; count ++){
-            if(correoIng.equals(array.getUsuario(count).getCorreo())){
-                if(contraIng.equals(array.getUsuario(count).getContraseña())){
-                    if(array.getUsuario(count).isEsAdmin()){
-                        Menu_Admin admin=new Menu_Admin(array.getArrayCampeon(), array.getArrayCuriosidad(),
-                        array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
-                        array.getArray(), array.getArrayUsuario());
-                       admin.setVisible(true);
-                       this.setVisible(false);
-                       break;
-                    } else{
-                       int usuarioActivo = count;
-                       MenuUsuarios m=new MenuUsuarios(array.getArrayCampeon(), array.getArrayCuriosidad(),
-                        array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
-                        array.getArray(), array.getArrayUsuario(), usuarioActivo);
-                       m.setVisible(true);
-                       this.setVisible(false);
-                       break;
+        try{
+            for(int count = 0; count < array.getArrayUsuario().length; count ++){
+                if(correoIng.equals(array.getUsuario(count).getCorreo())){
+                    if(contraIng.equals(array.getUsuario(count).getContraseña())){
+                        if(array.getUsuario(count).isEsAdmin()){
+                            Menu_Admin admin=new Menu_Admin(array.getArrayCampeon(), array.getArrayCuriosidad(),
+                            array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+                            array.getArray(), array.getArrayUsuario());
+                           admin.setVisible(true);
+                           this.setVisible(false);
+                           break;
+                        } else{
+                           int usuarioActivo = count;
+                           MenuUsuarios m=new MenuUsuarios(array.getArrayCampeon(), array.getArrayCuriosidad(),
+                            array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+                            array.getArray(), array.getArrayUsuario(), usuarioActivo);
+                           m.setVisible(true);
+                           this.setVisible(false);
+                           break;
+                        }
                     }
                 }
-            }
-        }//Fin for
-        
+            }//Fin for
+        }catch(NullPointerException err){
+            JOptionPane.showMessageDialog(null, "Datos incorrectos\n"
+                    + "Por favor ingrese de nuevo los datos.");
+        }
     }
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
         MainPanel a = new MainPanel(array.getArrayCampeon(), array.getArrayCuriosidad(),

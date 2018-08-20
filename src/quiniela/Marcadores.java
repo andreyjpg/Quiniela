@@ -11,6 +11,7 @@ public class Marcadores {
     private int marcadorLocal;
     private int marcadorVisitante;
     private int puntosObtenidos;
+    private boolean iniciado;
     
     public Marcadores(){
         usuario = 0;
@@ -22,7 +23,16 @@ public class Marcadores {
         marcadorLocal = 0;
         marcadorVisitante = 0;
         puntosObtenidos = 0;
+        iniciado =false;
     } 
+
+    public boolean isIniciado() {
+        return iniciado;
+    }
+
+    public void setIniciado(boolean iniciado) {
+        this.iniciado = iniciado;
+    }
 
     public int getUsuario() {
         return usuario;

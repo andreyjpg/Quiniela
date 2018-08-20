@@ -22,7 +22,24 @@ public class CrearUsuario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
-        Usuario u=new Usuario();
+    public void agregarMarcadores(quiniela.Usuario datos){
+        for(int count=0; count < array.getArray().length; count++){
+            if(array.get(count) != null){
+                quiniela.Marcadores marcador = new quiniela.Marcadores();
+                marcador.setUsuario(datos.getIdUsuario());
+                marcador.setIdPartido(array.get(count).getIdPartido());
+                marcador.setEquipoLocal(array.get(count).getEquipoLocal());
+                marcador.setFecha(array.get(count).getFecha());
+                marcador.setHora(array.get(count).getHora());
+                marcador.setMarcadorLocal(0);
+                marcador.setMarcadorVisitante(0);
+                marcador.setEquipoVisitante(array.get(count).getEquipoVisitante());
+
+                array.add(marcador);
+            }
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -206,7 +223,7 @@ public void RegistrarUsuario(){
                  +user.getCarrera()+"\nId.: "
                  +user.getIdUsuario());
         x++;
-        
+        agregarMarcadores(user);
     }
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
         MainPanel m=new MainPanel(array.getArrayCampeon(), array.getArrayCuriosidad(),

@@ -7,8 +7,7 @@ import javax.swing.table.DefaultTableModel;
     public class AgregarMarcador_Admin extends javax.swing.JFrame {
         quiniela.Arrays array = new quiniela.Arrays();
         DefaultTableModel model;
-        int row = countRows();
-        Object data[][]= new Object[row][6];
+        
   
     
     public AgregarMarcador_Admin( quiniela.Campeon[] camp,quiniela.Curiosidad[] curi,
@@ -23,8 +22,10 @@ import javax.swing.table.DefaultTableModel;
       array.setArray(part);
       array.setArray(usua);
         //CONSTRUCTOR PARA OBTENER DATOS DE JFRAME ANTERIORES
-        addRows(); //agregar datos a la tabla
-        setModel();//modelo de la tabla
+        int row = countRows();
+        Object data[][]= new Object[row][7];
+        addRows(data); //agregar datos a la tabla
+        setModel(data);//modelo de la tabla
         
     }   
 
@@ -44,19 +45,19 @@ import javax.swing.table.DefaultTableModel;
         }
         return countData;
     }
-    private void setModel(){
+    private void setModel(Object[][] data){
         
         tablaPartidos.setModel(new javax.swing.table.DefaultTableModel(
             data,
             new String [] {
-                "Iniciado", "Fecha / hora", "Equipo Local", "Marcador Local", "Marcador Visitante", "Equipo Visitante"
+                "Iniciado", "Finalizado", "Fecha / hora", "Equipo Local", "Marcador Local", "Marcador Visitante", "Equipo Visitante"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, true, false
+                true, true, false, false, true, true, false
             };
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
@@ -70,33 +71,99 @@ import javax.swing.table.DefaultTableModel;
         
     }
             
-    private void addRows(){
+    private void addRows(Object[][] data){
         int column = 0;
         try{
             for(int count=0; count<array.getArray().length; count++){              
                 data[column][0] = array.get(count).isIniciado();
-                data[column][1] = array.get(count).getFecha()+
+                data[column][1] = array.get(count).isFinalizado();
+                data[column][2] = array.get(count).getFecha()+
                                         "/"+ array.get(count).getHora();
-                data[column][2] = array.get(count).getEquipoLocal();
-                data[column][3] = String.valueOf(array.get(count).getMarcadorLocal());
-                data[column][4] = String.valueOf(array.get(count).getMarcadorVisitante());
-                data[column][5] = array.get(count).getEquipoVisitante();
+                data[column][3] = array.get(count).getEquipoLocal();
+                data[column][4] = String.valueOf(array.get(count).getMarcadorLocal());
+                data[column][5] = String.valueOf(array.get(count).getMarcadorVisitante());
+                data[column][6] = array.get(count).getEquipoVisitante();
                 column++;
             }
         }catch (NullPointerException err){
             
         } catch( ArrayIndexOutOfBoundsException err2){
             
-        }
-        
-                    
-                
-        
-        
-        
+        }        
     }
-    
+    public void puntos(){
+        try{
+            for(int partido = 0; partido < array.getArray().length; partido++){
+                if (array.get(partido).isFinalizado()){
+                    for(int marcador = 0; marcador < array.getArrayMarcadores().length; marcador++){
+                        if(array.getMarcadores(marcador) != null){
+                        if(array.get(partido).getIdPartido() == array.getMarcadores(marcador).getIdPartido()){
+                            if(array.get(partido).getMarcadorLocal() == array.getMarcadores(marcador).getMarcadorLocal()
+                                &&  array.get(partido).getMarcadorVisitante() == array.getMarcadores(marcador).getMarcadorVisitante()){
+                                    array.getMarcadores(marcador).setPuntosObtenidos(3);
+                            } else if (array.get(partido).getMarcadorLocal() > array.get(partido).getMarcadorVisitante()
+                                && array.getMarcadores(marcador).getMarcadorLocal() > array.getMarcadores(marcador).getMarcadorVisitante()
+                                ||array.get(partido).getMarcadorLocal() < array.get(partido).getMarcadorVisitante()
+                                && array.getMarcadores(marcador).getMarcadorLocal() < array.getMarcadores(marcador).getMarcadorVisitante()
+                                ||array.get(partido).getMarcadorLocal() == array.get(partido).getMarcadorVisitante()
+                                && array.getMarcadores(marcador).getMarcadorLocal() == array.getMarcadores(marcador).getMarcadorVisitante()){
+                                    array.getMarcadores(marcador).setPuntosObtenidos(1);
+                            }
 
+                            suma();
+                            System.out.print(array.getUsuario(1).getPuntos());
+                        } 
+                        }else{
+                            break;
+                        }
+                    }
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Datos Guardados");
+        }catch(NullPointerException err){
+                
+        }
+    }
+
+       public void suma(){
+           int suma =0;
+           try{
+            for(int usuario = 1; usuario < array.getArrayUsuario().length; usuario++){
+                if(array.getUsuario(usuario) != null){
+                for(int marcador = 0; marcador < array.getArrayUsuario().length; marcador++){
+                    if(array.getMarcadores(marcador) != null){
+                        if(array.getUsuario(usuario).getIdUsuario() == array.getMarcadores(marcador).getUsuario()){
+                            suma += array.getMarcadores(marcador).getPuntosObtenidos();
+                        }
+                        array.getUsuario(usuario).setPuntos(suma);
+                    }else{
+                        break;
+                    }
+                }
+                suma = 0;
+                } else {
+                    break;
+                }
+            }
+           }catch(NullPointerException err){
+               
+           }
+       }
+        public void editarPartidos(quiniela.Partido datos){
+            try{
+                for( int count = 0; count< array.getArrayMarcadores().length; count++){
+                    if(array.getMarcadores(count) != null){
+                       array.getMarcadores(count).setEquipoLocal(datos.getEquipoLocal());
+                       array.getMarcadores(count).setEquipoVisitante(datos.getEquipoVisitante());
+                       array.getMarcadores(count).setFecha(datos.getFecha());
+                       array.getMarcadores(count).setHora(datos.getHora());
+                    }
+                }
+            } catch(NullPointerException err){
+
+            }
+        }
+       
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -197,7 +264,7 @@ import javax.swing.table.DefaultTableModel;
         try {
             for( count= 0; count < tablaPartidos.getRowCount(); count++){
             
-                String fecha = String.valueOf(tablaPartidos.getModel().getValueAt(count, 0));
+                String fecha = String.valueOf(tablaPartidos.getModel().getValueAt(count, 2));
                 for ( int i = 0; i < fecha.length(); i++){
 
                     if( fecha.charAt(i) == '/'){
@@ -208,26 +275,39 @@ import javax.swing.table.DefaultTableModel;
                        date += fecha.charAt(i);
                    }
                 }
-                System.out.println(String.valueOf(tablaPartidos.getModel().getValueAt(count, 1)));
-                String teamL = String.valueOf(tablaPartidos.getModel().getValueAt(count, 1));
-                int L = Integer.parseInt(String.valueOf(tablaPartidos.getModel().getValueAt(count, 2)));
-                int V = Integer.parseInt(String.valueOf(tablaPartidos.getModel().getValueAt(count, 3)));
-                String TeamV = String.valueOf(tablaPartidos.getModel().getValueAt(count, 4));
-
+                boolean iniciado = Boolean.parseBoolean(String.valueOf(tablaPartidos.getModel().getValueAt(count, 0)));
+                boolean finalizado = Boolean.parseBoolean(String.valueOf(tablaPartidos.getModel().getValueAt(count, 1)));
+                String teamL = String.valueOf(tablaPartidos.getModel().getValueAt(count, 3));
+                int L = Integer.parseInt(String.valueOf(tablaPartidos.getModel().getValueAt(count, 4)));
+                int V = Integer.parseInt(String.valueOf(tablaPartidos.getModel().getValueAt(count, 5)));
+                String TeamV = String.valueOf(tablaPartidos.getModel().getValueAt(count, 6));
+                
+                array.get(count).setIniciado(iniciado);
+                array.get(count).setFinalizado(finalizado);
                 array.get(count).setFecha(date);
                 array.get(count).setHora(hour);
                 array.get(count).setEquipoLocal(teamL);
                 array.get(count).setMarcadorLocal(L);
                 array.get(count).setMarcadorVisitante(V);
                 array.get(count).setEquipoVisitante(TeamV);
+                
+                quiniela.Partido partido = new quiniela.Partido();
+                partido.setIniciado(iniciado);
+                partido.setFinalizado(finalizado);
+                partido.setFecha(date);
+                partido.setHora(hour);
+                partido.setEquipoLocal(teamL);
+                partido.setMarcadorLocal(L);
+                partido.setMarcadorVisitante(V);
+                partido.setEquipoVisitante(TeamV);
+                editarPartidos(partido);
             }
-           
+           puntos();
         } 
         catch (ArrayIndexOutOfBoundsException err){
             
         }
-        JOptionPane.showMessageDialog(null, "Datos Guardados");
-        System.out.println(array.get(0).getEquipoLocal());
+        
     }//GEN-LAST:event_guardarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -11,6 +11,7 @@ public class Partido{
     private String fecha; 
     private String hora;
     private boolean iniciado;
+    private boolean finalizado;
     
     public Partido(){
         idPartido = 0;
@@ -21,6 +22,15 @@ public class Partido{
         fecha = "";
         hora = "";
         iniciado= false;
+        finalizado = false;
+    }
+
+    public boolean isFinalizado() {
+        return finalizado;
+    }
+
+    public void setFinalizado(boolean finalizado) {
+        this.finalizado = finalizado;
     }
 
     public boolean isIniciado() {
