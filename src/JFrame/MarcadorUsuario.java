@@ -193,7 +193,6 @@ public class MarcadorUsuario extends javax.swing.JFrame {
                 
             }
             JOptionPane.showMessageDialog(null, "Datos Guardados");
-            System.out.println(array.getMarcadores(0).getMarcadorLocal());
     }//GEN-LAST:event_guardarActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
