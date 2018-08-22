@@ -1,6 +1,8 @@
 
 package JFrame;
 
+import javax.swing.JOptionPane;
+
 
 public class Curiosidades extends javax.swing.JFrame {
     quiniela.Arrays array = new quiniela.Arrays();
@@ -106,6 +108,7 @@ public class Curiosidades extends javax.swing.JFrame {
         quiniela.Curiosidad dato = new quiniela.Curiosidad();
         dato.setDescripcion(texto.getText());
         array.add(dato);
+        JOptionPane.showMessageDialog(null, "Los datos han sido guardados correctamente");
     }//GEN-LAST:event_GuardarActionPerformed
 
     /**
