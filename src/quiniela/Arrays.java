@@ -129,6 +129,7 @@ public class Arrays {
         for (int count = 0; count < this.curiosidades.length; count++){
             if ( this.curiosidades[count] == null ){
               this.curiosidades[count] = data;
+              this.curiosidades[count].setIdCuriosidad(count+1);
               break;
             }
         }

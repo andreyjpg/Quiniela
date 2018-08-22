@@ -57,7 +57,7 @@ import javax.swing.table.DefaultTableModel;
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false, false, true, true, false
+                true, true, true, true, true, true, true
             };
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
@@ -204,6 +204,9 @@ import javax.swing.table.DefaultTableModel;
             }
         });
         jScrollPane2.setViewportView(tablaPartidos);
+        if (tablaPartidos.getColumnModel().getColumnCount() > 0) {
+            tablaPartidos.getColumnModel().getColumn(0).setMaxWidth(50);
+        }
 
         guardar.setText("Guardar resultados");
         guardar.addActionListener(new java.awt.event.ActionListener() {
