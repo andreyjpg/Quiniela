@@ -108,6 +108,7 @@ public class Arrays {
         for (int count = 0; count < this.arrayEquipos.length; count++){
             if ( this.arrayEquipos[count] == null ){
               this.arrayEquipos[count] = data;
+              this.arrayEquipos[count].setIdEquipo(count+1);
               break;
             }
         }
