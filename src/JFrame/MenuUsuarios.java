@@ -159,6 +159,11 @@ public class MenuUsuarios extends javax.swing.JFrame {
 
     private void goleadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goleadorActionPerformed
         // TODO add your handling code here:
+        AgregarGoleador goleo = new AgregarGoleador(array.getArrayCampeon(), array.getArrayCuriosidad(),
+            array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+            array.getArray(), array.getArrayUsuario());
+        goleo.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_goleadorActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
