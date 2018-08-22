@@ -10,7 +10,7 @@ quiniela.Arrays array = new quiniela.Arrays();
     }
     public AgregarGoleador (quiniela.Campeon[] camp,quiniela.Curiosidad[] curi,
             quiniela.Equipos[] equi, quiniela.Goleador[] gole,quiniela.Marcadores[]marc,
-            quiniela.Partido[] part, quiniela.Usuario[] usua ){
+            quiniela.Partido[] part, quiniela.Usuario[] usua,int usuario){
         initComponents();
         array.setArray(camp);
         array.setArray(curi);
@@ -19,6 +19,7 @@ quiniela.Arrays array = new quiniela.Arrays();
         array.setArray(marc);
         array.setArray(part);
         array.setArray(usua);
+        usuarioActivo=usuario;
         sincroEquip();
         
     }
@@ -165,14 +166,54 @@ quiniela.Arrays array = new quiniela.Arrays();
 
     private void EstoySeguActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstoySeguActionPerformed
         // TODO add your handling code here:
-        
+        int count=0;
+        int indexC=0;
+        int indexG=0;
+        boolean existeG=false;
+        boolean existeC=false;
         String s= EquipoGole.getSelectedItem().toString();
-         
-         
          ResulEquip.setText((EquipoGole.getSelectedItem().toString()));
-       
-         
          ResulCamp.setText((EquipoCamp.getSelectedItem().toString()));
+         
+         while(array.getGoleador(count)!=null){
+            if (array.getUsuario(usuarioActivo).getIdUsuario()== 
+                    array.getGoleador(count).getUsuario()){
+                existeG=true; 
+                indexC = count;
+            }
+            count++;
+         }
+            count=0;
+         while(array.getCampeon(count)!=null){
+            if (array.getUsuario(usuarioActivo).getIdUsuario()== 
+                    array.getCampeon(count).getUsuario()){
+                existeC=true; 
+                indexG = count;
+            }
+            count++;
+             
+         }
+         
+         if (existeG){
+             array.getGoleador(indexG).setJugador(EquipoGole.getSelectedItem().toString());
+         }else {
+             quiniela.Goleador golead= new quiniela.Goleador();
+             golead.setUsuario(array.getUsuario(usuarioActivo).getIdUsuario());
+             golead.setJugador(EquipoGole.getSelectedItem().toString());
+             array.add(golead);
+         }
+         if (existeC){
+             array.getCampeon(indexC).setEquipo(EquipoCamp.getSelectedItem().toString());
+         }else {
+             quiniela.Campeon campe= new quiniela.Campeon();
+             campe.setUsuario(array.getUsuario(usuarioActivo).getIdUsuario());
+             campe.setEquipo(EquipoCamp.getSelectedItem().toString());
+             array.add(campe);
+         }
+         
+         
+         
+         
     }//GEN-LAST:event_EstoySeguActionPerformed
 
     private void ResulEquipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResulEquipActionPerformed
