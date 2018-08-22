@@ -19,8 +19,19 @@ quiniela.Arrays array = new quiniela.Arrays();
         array.setArray(marc);
         array.setArray(part);
         array.setArray(usua);
+        sincroEquip();
+        
     }
-
+    public void sincroEquip(){
+        int x=0;
+        while (array.getEquipos(x)!= null){
+            EquipoGole.addItem(array.getEquipos(x).getNombreEquipo());
+            EquipoCamp.addItem(array.getEquipos(x).getNombreEquipo());
+            x++;
+            
+        }
+        
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -44,14 +55,12 @@ quiniela.Arrays array = new quiniela.Arrays();
             }
         });
 
-        EquipoGole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rusia", "Alemania", "Costa Rica" }));
         EquipoGole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EquipoGoleActionPerformed(evt);
             }
         });
 
-        EquipoCamp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rusia", "Alemania", "Costa Rica" }));
         EquipoCamp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EquipoCampActionPerformed(evt);
