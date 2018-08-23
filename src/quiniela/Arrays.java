@@ -10,8 +10,8 @@ public class Arrays {
     private Marcadores[] usuarioPartidos = new Marcadores[3000];
     private Equipos[] arrayEquipos = new Equipos[40];
     private Curiosidad[] curiosidades = new Curiosidad[10];
-    private Campeon[] campeonesUsuario = new Campeon[30];
-    private Goleador[] goleadoresUsuario = new Goleador[30];
+    private Campeon[] campeonesUsuario = new Campeon[31];
+    private Goleador[] goleadoresUsuario = new Goleador[31];
     
 
    /* public Arrays() {

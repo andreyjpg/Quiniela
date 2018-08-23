@@ -22,8 +22,18 @@ public class AgregarEquipos extends javax.swing.JFrame {
       array.setArray(marc);
       array.setArray(part);
       array.setArray(usua);
-        
     }
+    
+    public void addCombobox(){
+        int x=0;
+        while (array.getEquipos(x)!= null){
+            Jcampeon.addItem(array.getEquipos(x).getNombreEquipo());
+            JGoleador.addItem(array.getEquipos(x).getNombreEquipo());
+            x++;
+        }
+    }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -63,9 +73,11 @@ public class AgregarEquipos extends javax.swing.JFrame {
             }
         });
 
-        Jcampeon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        JGoleador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Jcampeon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JcampeonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,10 +108,10 @@ public class AgregarEquipos extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(Jcampeon, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Jcampeon, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JGoleador, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+                .addComponent(JGoleador, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,6 +145,8 @@ public class AgregarEquipos extends javax.swing.JFrame {
        equipo.setNombreEquipo(nuevoEquipo.getText());
        array.add(equipo);
         JOptionPane.showMessageDialog(null, "Los datos han sido guardados correctamente");
+        nuevoEquipo.setText("");
+        addCombobox();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void AtrásActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrásActionPerformed
@@ -142,6 +156,10 @@ public class AgregarEquipos extends javax.swing.JFrame {
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AtrásActionPerformed
+
+    private void JcampeonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcampeonActionPerformed
+        System.out.print("Hola");
+    }//GEN-LAST:event_JcampeonActionPerformed
 
     /**
      * @param args the command line arguments
