@@ -109,6 +109,7 @@ public class Curiosidades extends javax.swing.JFrame {
         dato.setDescripcion(texto.getText());
         array.add(dato);
         JOptionPane.showMessageDialog(null, "Los datos han sido guardados correctamente");
+        texto.setText("");
     }//GEN-LAST:event_GuardarActionPerformed
 
     /**

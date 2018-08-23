@@ -108,10 +108,7 @@ import javax.swing.table.DefaultTableModel;
                                 ||array.get(partido).getMarcadorLocal() == array.get(partido).getMarcadorVisitante()
                                 && array.getMarcadores(marcador).getMarcadorLocal() == array.getMarcadores(marcador).getMarcadorVisitante()){
                                     array.getMarcadores(marcador).setPuntosObtenidos(1);
-                            }
-
-                            suma();
-                            System.out.print(array.getUsuario(1).getPuntos());
+                            }        
                         } 
                         }else{
                             break;
@@ -119,6 +116,7 @@ import javax.swing.table.DefaultTableModel;
                     }
                 }
             }
+            suma();
             JOptionPane.showMessageDialog(null, "Datos Guardados");
         }catch(NullPointerException err){
                 
@@ -135,7 +133,9 @@ import javax.swing.table.DefaultTableModel;
                         if(array.getUsuario(usuario).getIdUsuario() == array.getMarcadores(marcador).getUsuario()){
                             suma += array.getMarcadores(marcador).getPuntosObtenidos();
                         }
-                        array.getUsuario(usuario).setPuntos(suma);
+                        array.getUsuario(usuario).setPuntos(suma 
+                                                        + sumaGoleador(array.getUsuario(usuario).getIdUsuario()) 
+                                                        + sumaCampeon(array.getUsuario(usuario).getIdUsuario()) );
                     }else{
                         break;
                     }
@@ -149,6 +149,29 @@ import javax.swing.table.DefaultTableModel;
                
            }
        }
+       
+       public int sumaCampeon(int id){
+           int count=1, puntos = 0;
+           while ( array.getCampeon(count)!= null){
+               if (array.getCampeon(count).getUsuario() == array.getUsuario(id).getIdUsuario()){
+                   puntos = array.getCampeon(count).getPuntos();
+               }
+               count++;
+           }
+           return puntos;
+       }
+       
+       public int sumaGoleador(int id){
+           int count=1, puntos = 0;
+           while ( array.getGoleador(count)!= null){
+               if (array.getGoleador(count).getUsuario() == array.getUsuario(id).getIdUsuario()){
+                   puntos = array.getGoleador(count).getPuntos();
+               }
+               count++;
+           }
+           return puntos;
+       }
+       
         public void editarPartidos(quiniela.Partido datos){
             try{
                 for( int count = 0; count< array.getArrayMarcadores().length; count++){

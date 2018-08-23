@@ -228,10 +228,7 @@ quiniela.Arrays array = new quiniela.Arrays();
              campe.setEquipo(EquipoCamp.getSelectedItem().toString());
              array.add(campe);
          }
-         
-         
-         
-         
+    
     }//GEN-LAST:event_EstoySeguActionPerformed
 
     private void ResulEquipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResulEquipActionPerformed

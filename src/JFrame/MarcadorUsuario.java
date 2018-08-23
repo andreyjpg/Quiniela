@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 public class MarcadorUsuario extends javax.swing.JFrame {
     quiniela.Arrays array = new quiniela.Arrays();
     int usuarioActivo = 0;
-    String dataTable[][]= new String[array.getArray().length][5];
+    String dataTable[][]= new String[array.getArray().length][6];
 
     public MarcadorUsuario() {
         initComponents();
@@ -43,6 +43,7 @@ public class MarcadorUsuario extends javax.swing.JFrame {
                     dataTable[column][2] = String.valueOf(array.getMarcadores(count).getMarcadorLocal());
                     dataTable[column][3] = String.valueOf(array.getMarcadores(count).getMarcadorVisitante());
                     dataTable[column][4] = array.getMarcadores(count).getEquipoVisitante();
+                    dataTable[column][5] = String.valueOf(array.getMarcadores(count).getPuntosObtenidos());
                     column++;  
                 }
             }
@@ -58,11 +59,12 @@ public class MarcadorUsuario extends javax.swing.JFrame {
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             dataTable,
             new String [] {
-                "Fecha / hora", "Equipo local", "Marcador Local", "Marcador Visitante", "Equipo Visitante"
+                "Fecha / hora", "Equipo local", "Marcador Local", "Marcador Visitante"
+                    , "Equipo Visitante", "Puntos Obtenidos"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, false
+                false, false, true, true, false, false
             };
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];

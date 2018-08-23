@@ -171,9 +171,11 @@ public class MenuUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void rankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankingActionPerformed
-        Usuario u=new Usuario();
-        //u.ordenarRanking();
-        //u.mostrarRanking();
+       Ranking sesion = new Ranking(array.getArrayCampeon(), array.getArrayCuriosidad(),
+            array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+            array.getArray(), array.getArrayUsuario(), usuarioActivo);
+        sesion.setVisible(true);
+        this.setVisible(false);    
     }//GEN-LAST:event_rankingActionPerformed
 
     private void sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sesionActionPerformed

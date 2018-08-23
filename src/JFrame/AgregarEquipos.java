@@ -33,7 +33,76 @@ public class AgregarEquipos extends javax.swing.JFrame {
         }
     }
     
+    public void puntosCampeon(){
+        int count=1;
+        while(array.getCampeon(count)!= null){
+            if( (array.getCampeon(0).getEquipo()).equals(array.getCampeon(count).getEquipo()) ){
+                array.getCampeon(count).setPuntos(3);
+            }
+            count++;
+        }
+    }
     
+    public void puntosGoleador(){
+        int count=1;
+        while(array.getCampeon(count)!= null){
+            if( (array.getGoleador(0).getJugador()).equals(array.getCampeon(count).getEquipo()) ){
+                array.getGoleador(count).setPuntos(3);
+            }
+            count++;
+        }
+    }
+    
+    public void suma(){
+           int suma =0;
+           try{
+            for(int usuario = 1; usuario < array.getArrayUsuario().length; usuario++){
+                if(array.getUsuario(usuario) != null){
+                for(int marcador = 0; marcador < array.getArrayUsuario().length; marcador++){
+                    if(array.getMarcadores(marcador) != null){
+                        if(array.getUsuario(usuario).getIdUsuario() == array.getMarcadores(marcador).getUsuario()){
+                            suma += array.getMarcadores(marcador).getPuntosObtenidos();
+                        }
+                        array.getUsuario(usuario).setPuntos(suma 
+                        + sumaGoleador(array.getUsuario(usuario).getIdUsuario()) 
+                        + sumaCampeon(array.getUsuario(usuario).getIdUsuario()) );
+                    }else{
+                        break;
+                    }
+                }
+                suma = 0;
+                } else {
+                    break;
+                }
+            }
+           }catch(NullPointerException err){
+               
+           }
+    }
+    
+    public int sumaCampeon(int id){
+           int count=1, puntos = 0;
+           while ( array.getCampeon(count)!= null){
+               if (array.getCampeon(count).getUsuario() == array.getUsuario(id).getIdUsuario()){
+                   puntos = array.getCampeon(count).getPuntos();
+               }
+               count++;
+           }
+           return puntos;
+       }
+       
+       public int sumaGoleador(int id){
+           int count=1, puntos = 0;
+           while ( array.getGoleador(count)!= null){
+               if (array.getGoleador(count).getUsuario() == array.getUsuario(id).getIdUsuario()){
+                   puntos = array.getGoleador(count).getPuntos();
+               }
+               count++;
+           }
+           return puntos;
+       }
+       
+       
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -76,6 +145,12 @@ public class AgregarEquipos extends javax.swing.JFrame {
         Jcampeon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JcampeonActionPerformed(evt);
+            }
+        });
+
+        JGoleador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JGoleadorActionPerformed(evt);
             }
         });
 
@@ -158,8 +233,22 @@ public class AgregarEquipos extends javax.swing.JFrame {
     }//GEN-LAST:event_AtrásActionPerformed
 
     private void JcampeonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcampeonActionPerformed
-        System.out.print("Hola");
+        quiniela.Campeon campeon= new quiniela.Campeon();
+             campeon.setUsuario(1);
+             campeon.setEquipo(Jcampeon.getSelectedItem().toString());
+             array.add(campeon);
+             puntosCampeon();
+             suma();
     }//GEN-LAST:event_JcampeonActionPerformed
+
+    private void JGoleadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JGoleadorActionPerformed
+        quiniela.Goleador goleador= new quiniela.Goleador();
+             goleador.setUsuario(1);
+             goleador.setJugador(JGoleador.getSelectedItem().toString());
+             array.add(goleador);
+             puntosGoleador();
+             suma();
+    }//GEN-LAST:event_JGoleadorActionPerformed
 
     /**
      * @param args the command line arguments
