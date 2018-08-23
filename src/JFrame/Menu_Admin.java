@@ -55,6 +55,11 @@ public class Menu_Admin extends javax.swing.JFrame {
         });
 
         jButton3.setText("Ver Ranking");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Menú administrador");
 
@@ -166,6 +171,14 @@ public class Menu_Admin extends javax.swing.JFrame {
         next.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_EquiposActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+         Ranking sesion = new Ranking(array.getArrayCampeon(), array.getArrayCuriosidad(),
+            array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+            array.getArray(), array.getArrayUsuario());
+        sesion.setVisible(true);
+        this.setVisible(false);    
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

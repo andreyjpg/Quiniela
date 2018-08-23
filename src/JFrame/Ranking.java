@@ -29,6 +29,22 @@ public class Ranking extends javax.swing.JFrame {
       tabla();
     }
     
+    public Ranking(quiniela.Campeon[] camp,quiniela.Curiosidad[] curi,
+            quiniela.Equipos[] equi, quiniela.Goleador[] gole,quiniela.Marcadores[]marc,
+            quiniela.Partido[] part ,quiniela.Usuario[] usua ) {
+        initComponents();
+      array.setArray(camp);
+      array.setArray(curi);
+      array.setArray(equi);
+      array.setArray(gole);
+      array.setArray(marc);
+      array.setArray(part);
+      array.setArray(usua);
+      this.setLocationRelativeTo(null);
+      ordenar();
+      tabla();
+    }
+    
     public Ranking() {
         initComponents(); 
     }
@@ -100,8 +116,7 @@ public class Ranking extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaPosiciones = new javax.swing.JTable();
-        Atras = new javax.swing.JButton();
-        Actualizar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,19 +133,10 @@ public class Ranking extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TablaPosiciones);
 
-        Atras.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Atras.setText("Atrás");
-        Atras.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Atrás");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AtrasActionPerformed(evt);
-            }
-        });
-
-        Actualizar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Actualizar.setText("Actualizar");
-        Actualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActualizarActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -139,45 +145,46 @@ public class Ranking extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(Atras, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(136, 136, 136)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
+                .addComponent(jButton1)
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Atras, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(Actualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
-        this.setVisible(false);
-    }//GEN-LAST:event_AtrasActionPerformed
-
-    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
-
-    }//GEN-LAST:event_ActualizarActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if( usuarioActivo == 0){
+            MenuUsuarios sesion = new MenuUsuarios(array.getArrayCampeon(), array.getArrayCuriosidad(),
+                array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+                array.getArray(), array.getArrayUsuario(), usuarioActivo);
+            sesion.setVisible(true);
+            this.setVisible(false);
+        } else {
+            Menu_Admin sesion = new Menu_Admin(array.getArrayCampeon(), array.getArrayCuriosidad(),
+                array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
+                array.getArray(), array.getArrayUsuario());
+            sesion.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,9 +222,8 @@ public class Ranking extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Actualizar;
-    private javax.swing.JButton Atras;
     private javax.swing.JTable TablaPosiciones;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
