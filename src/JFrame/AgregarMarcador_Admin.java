@@ -110,14 +110,15 @@ import javax.swing.table.DefaultTableModel;
                                     array.getMarcadores(marcador).setPuntosObtenidos(1);
                             }        
                         } 
+                        suma();
+                        JOptionPane.showMessageDialog(null, "Datos Guardados");
                         }else{
                             break;
                         }
                     }
                 }
             }
-            suma();
-            JOptionPane.showMessageDialog(null, "Datos Guardados");
+            
         }catch(NullPointerException err){
                 
         }
@@ -153,7 +154,7 @@ import javax.swing.table.DefaultTableModel;
        public int sumaCampeon(int id){
            int count=1, puntos = 0;
            while ( array.getCampeon(count)!= null){
-               if (array.getCampeon(count).getUsuario() == array.getUsuario(id).getIdUsuario()){
+               if (array.getCampeon(count).getUsuario() == id){
                    puntos = array.getCampeon(count).getPuntos();
                }
                count++;
@@ -164,7 +165,7 @@ import javax.swing.table.DefaultTableModel;
        public int sumaGoleador(int id){
            int count=1, puntos = 0;
            while ( array.getGoleador(count)!= null){
-               if (array.getGoleador(count).getUsuario() == array.getUsuario(id).getIdUsuario()){
+               if (array.getGoleador(count).getUsuario() == id){
                    puntos = array.getGoleador(count).getPuntos();
                }
                count++;
@@ -176,10 +177,11 @@ import javax.swing.table.DefaultTableModel;
             try{
                 for( int count = 0; count< array.getArrayMarcadores().length; count++){
                     if(array.getMarcadores(count) != null){
-                       array.getMarcadores(count).setEquipoLocal(datos.getEquipoLocal());
-                       array.getMarcadores(count).setEquipoVisitante(datos.getEquipoVisitante());
-                       array.getMarcadores(count).setFecha(datos.getFecha());
-                       array.getMarcadores(count).setHora(datos.getHora());
+                        if(datos.getIdPartido()== array.getMarcadores(count).getIdPartido())
+                            array.getMarcadores(count).setEquipoLocal(datos.getEquipoLocal());
+                            array.getMarcadores(count).setEquipoVisitante(datos.getEquipoVisitante());
+                            array.getMarcadores(count).setFecha(datos.getFecha());
+                            array.getMarcadores(count).setHora(datos.getHora());
                     }
                 }
             } catch(NullPointerException err){
@@ -318,6 +320,7 @@ import javax.swing.table.DefaultTableModel;
                 array.get(count).setEquipoVisitante(TeamV);
                 
                 quiniela.Partido partido = new quiniela.Partido();
+                partido.setIdPartido(array.get(count).getIdPartido());
                 partido.setIniciado(iniciado);
                 partido.setFinalizado(finalizado);
                 partido.setFecha(date);

@@ -57,7 +57,7 @@ public class Ranking extends javax.swing.JFrame {
      Usuario aux[]=new Usuario[1];
      
      while(array.getUsuario(j)!=null){
-         arreglo[i]=array.arrayUsuario[j];
+         arreglo[i]=array.getUsuario(j);
          i++;
          j++;
      }
@@ -85,7 +85,6 @@ public class Ranking extends javax.swing.JFrame {
                 matriz[column][1] = arraylocal[count].getNombre();
                 matriz[column][2] = arraylocal[count].getApellido();
                 matriz[column][3] = String.valueOf(arraylocal[count].getPuntos());
-                
                 column++;
             }
         }catch (NullPointerException err){
@@ -100,8 +99,12 @@ public class Ranking extends javax.swing.JFrame {
             matriz,
             new String [] {
                 "Posición","Nombre", "Apellidos", "Puntos"
-            }
-        ));
+                }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+        });
     }
 
     /**
@@ -130,7 +133,15 @@ public class Ranking extends javax.swing.JFrame {
             new String [] {
                 "Nombre", "Apellidos", "Puntos"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TablaPosiciones);
 
         jButton1.setText("Atrás");
@@ -171,7 +182,7 @@ public class Ranking extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if( usuarioActivo == 0){
+        if( usuarioActivo != 0){
             MenuUsuarios sesion = new MenuUsuarios(array.getArrayCampeon(), array.getArrayCuriosidad(),
                 array.getArrayEquipos(),array.getArrayGoleador(),array.getArrayMarcadores(),
                 array.getArray(), array.getArrayUsuario(), usuarioActivo);

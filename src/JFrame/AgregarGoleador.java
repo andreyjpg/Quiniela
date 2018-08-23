@@ -21,7 +21,24 @@ quiniela.Arrays array = new quiniela.Arrays();
         array.setArray(usua);
         usuarioActivo=usuario;
         sincroEquip();
+        establecer();
+    }
+    public void establecer(){
+        int x = 0;
+        while (array.getCampeon(x)!= null){
+            if(array.getCampeon(x).getUsuario() == array.getUsuario(x).getIdUsuario()){
+                EquipoCamp.setSelectedItem(array.getCampeon(x).getEquipo());
+            }
+            x++;  
+        }
         
+        x = 0;
+        while (array.getGoleador(x)!= null){
+            if(array.getGoleador(x).getUsuario() == array.getUsuario(x).getIdUsuario()){
+                EquipoCamp.setSelectedItem(array.getGoleador(x).getJugador());
+            }
+            x++;  
+        }
     }
     public void sincroEquip(){
         int x=0;
